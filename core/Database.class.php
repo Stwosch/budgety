@@ -29,7 +29,7 @@ class Database {
         }
     }
 
-    static public function SQLselect($sql, $options = Array()) { 
+    static public function selectValSQL($sql, $options = Array()) { 
 
         // ARGUMENT OPTIONS FOR WHERE'S VALUES BECAUSE WE WANT TO PREPARE 
         // OUR SELECT TO DEFEND AGAINST SQL INCJETION
@@ -87,7 +87,7 @@ class Database {
         }
     }
 
-    static public function SQLupdate($sql, $options = Array()) {
+    static public function changeValSQL($sql, $options = Array()) {
 
         //TO USE THIS METHOD WE MUST PREPARE OUR SQL 
         //IN OPTIONS ARRAY WE WILL DEFINE VALUES FOR WHERE AND SET
