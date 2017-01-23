@@ -1,6 +1,6 @@
 <?php
 
-class Main {
+class MainManager {
 
     private $request;
 
@@ -14,6 +14,13 @@ class Main {
                 require_once($this->request.'.interface.php');
             break;
             
+            case 'checkLogIn':
+            	require_once($this->request.'.ajax.php');
+            break;
+
+            case 'checkSignUp':
+            	require_once($this->request.'.ajax.php');
+            break;
         }
     }
 }

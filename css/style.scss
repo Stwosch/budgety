@@ -1,0 +1,136 @@
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/background.jpeg') center center no-repeat;
+    height: 100vh;
+    color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+    text-shadow: 1px 1px #000000;
+}
+
+ul {
+    padding: 0;
+    list-style-image: url('../img/moneta.png');
+}
+
+input {
+    display: block;
+    margin: 15px auto;
+    box-sizing: border-box;
+    padding: 8px;
+    outline: 0;
+    border: 0;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    width: 50%;
+    min-width: 200px;
+
+    &:focus {
+        box-shadow: 0px 0px 6px 3px #3ADF8A;
+    }
+}
+
+a, p {
+    text-decoration: none;
+    color: #FFFFFF;
+    display: block;
+    margin: 5px auto;
+    font-size: 1.4rem;
+    cursor: pointer;
+
+    &:hover, &:focus {
+        text-decoration: underline;
+        color: #FFFFFF;
+        outline: 0;
+    }
+}
+
+
+.flexboxes {
+    padding: 20px;
+}
+
+.page-heading {
+    color: #3366CC;
+    font-size: 8rem;
+    text-shadow: 3px 3px #000000;
+}
+
+.main {
+    padding-top: 250px;
+    padding-bottom: 80px;
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+}
+
+.form_section {
+    text-align: center;
+    border-right: 1px solid #FFFFFF;
+    flex: 1;
+
+    h2 {
+        font-size: 4rem;
+    }
+
+    .form_btn {
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 10px;
+        width: 50%;
+        min-width: 200px;
+        border: 0;
+        color: #FFFFFF;
+        cursor: pointer;
+        background-color: #41BE7D;
+        box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.8);
+        text-transform: uppercase;
+        font-size: 1.6rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+
+        &:hover, &:focus {
+            background-color: #3ADF8A;
+            outline: 0;
+        }
+    }
+
+    a {
+        font-size: 1.4rem;
+    }
+}
+
+.info_section {
+    text-align: center;
+    flex: 1;
+
+    h2 {
+        font-weight: 400;
+        font-size: 3.5rem;
+    }
+
+    li {
+        font-size: 2rem;
+        margin: 5px 0;
+        list-style-position: inside;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .main {
+        padding-top: 60px;
+        padding-bottom: 60px;
+        flex-direction: column-reverse;
+    }
+
+    .form_section {
+        border: 0;
+        border-top: 1px solid #FFFFFF;
+    }
+
+}

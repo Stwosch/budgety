@@ -9,6 +9,6 @@ if( !( isset($_GET['page']) ) ) { // forwarding to given page
     
 } else {
     
-    $main = new Main($_GET['page']); // forwarding to home
+    $main = new MainManager($_GET['page']); // forwarding to home
     
 }

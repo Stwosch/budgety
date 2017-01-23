@@ -1,8 +1,8 @@
 <?php
 
-class Database {
+class DatabaseManager {
 
-    static public function devErrorHandling($e, $message="Wystąpił błąd, przepraszamy za usterki") { //KONEICZNIE SFORMATOWAC WYGLAD WYSWIETLANIA BLEDOW W CSSIE
+    static private function devErrorHandling($e, $message="Wystąpił błąd, przepraszamy za usterki") { //KONEICZNIE SFORMATOWAC WYGLAD WYSWIETLANIA BLEDOW W CSSIE
         
         if(ENVIROMENT==='dev') {
 
@@ -16,7 +16,7 @@ class Database {
         die();
     }
 
-    static public function DBconnect() {
+    static private function DBconnect() {
 
         try {
 
@@ -29,18 +29,19 @@ class Database {
         }
     }
 
-    static public function selectValSQL($sql, $options = Array()) { 
+    static private function templateSQL($sql, $options = Array()) {
 
-        // ARGUMENT OPTIONS FOR WHERE'S VALUES BECAUSE WE WANT TO PREPARE 
-        // OUR SELECT TO DEFEND AGAINST SQL INCJETION
-        // IN ARGUMENTS, IF WE ARE USING 'WHERE' WE MUST SEND ARRAY WITH VALUES
-        // e.g 
-        // first arg "SELECT * FROM users WHERE id_users = :s0 AND username = :s1"
-        // second arg ["5", "test"]
+    	/*
+        ARGUMENT OPTIONS FOR WHERE'S VALUES BECAUSE WE WANT TO PREPARE 
+        OUR SELECT TO DEFEND AGAINST SQL INCJETION
+        IN ARGUMENTS, IF WE ARE USING 'WHERE' WE MUST SEND ARRAY WITH VALUES
+        e.g 
+        first arg "SELECT * FROM users WHERE id_users = :s0 AND username = :s1"
+        second arg ["5", "test"]
 
-        //example about returned value if we have mulitple result from function
-        //$select is variable contains called this method
-        /*
+        example about returned value if we have mulitple result from function
+        $select is variable contains called this method
+        
 
         if($select !== false) {  <- check the method didnt return false(found 0 rows)
             foreach($select as $s) { <- we are in the dimensional arrays so we must go deeper
@@ -52,33 +53,51 @@ class Database {
 
         */
 
-        $pdo = self::DBconnect();
-        try {
-            if(!empty($options)) { // CHECK THAT SELECT CONTAINS 'WHERE'
+    	$pdo = self::DBconnect();
 
-                $count = count($options);
+    	if(!empty($options)) {
 
-                for($i=0; $i<$count; $i++) { // IF YES, WE MUST CREATE ARRAY WITH VALUES 
-                    $values[":s".$i] = $options[$i]; // THAT WE WILL USE TO COMPARE :s with value 
-                }
+            $count = count($options);
+
+            for($i=0; $i<$count; $i++) { // IF YES, WE MUST CREATE ARRAY WITH VALUES 
+                $values[":s".$i] = $options[$i]; // THAT WE WILL USE TO COMPARE :s with value 
             }
-        
-            $query = $pdo->prepare($sql);
-            $result = isset($values)? $query->execute($values) : $query->execute();
+                
+        }
+            
+        $query = $pdo->prepare($sql);
+        $result = isset($values)? $query->execute($values) : $query->execute(); // DEPENDING ON WHETHER WE SEND ARRAY WITH OPTIONS
 
+        $pdo = null;
+
+        return [$result, $query]; // WE NEED ALSO RETURN QUERY FOR SQL SELECTS
+    }
+
+    static public function selectValSQL($sql, $options = Array()) { 
+    	
+        try {
+            
+        	$tempArr = self::templateSQL($sql, $options);
+
+        	$result = $tempArr[0];
+        	$query = $tempArr[1]; // ASSIGN VALUES
         
-            if(!$result) 
+            if(!$result) {
                 throw new Exception('Something went wrong in SQL select'); // IF WE DON'T HAVE ANY RESULT, WE THROW EXCEPTION
+            }
             
-            if($query->rowCount()===0)  //NOT FOUND IN DATBASE
-                return false;
-            
+            if($query->rowCount()===0){
+            	return false;
+            }  //NOT FOUND IN DATABASE
 
+            if($query->rowCount()===1) {
+                return $query->fetch(PDO::FETCH_ASSOC);
+            }
+               
             while( ($row = $query->fetch(PDO::FETCH_ASSOC) )) {
                 $returnArray[] = $row; // PREPARE TO RETURN
             }
-
-            $pdo = null; // CLOSE CONNECT
+			
             return $returnArray;
 
         } catch(Exception $e) {
@@ -94,26 +113,14 @@ class Database {
         //ALWAYS REMEMBER ABOUT WHERE AND SET BEACUSE
         //WITHOUT WHERE THIS IS NOT WORKING
 
-        $pdo = self::DBconnect();
-  
         try {
-            if(!empty($options)) {
-
-                $count = count($options);
-
-                for($i=0; $i<$count; $i++) { // IF YES, WE MUST CREATE ARRAY WITH VALUES 
-                    $values[":s".$i] = $options[$i]; // THAT WE WILL USE TO COMPARE :s with value 
-                }
-                
-            } else {
-                throw new Exception("Can't update. Values were not declared"); // WE DIDNT DEFINED WHAT WE WANT TO UPDATE, SET AND WHERE VALUES
-            }
             
-            $query = $pdo->prepare($sql);
-            $result = $query->execute($values);
-
-            if(!$result) 
+            $tempArr = self::templateSQL($sql, $options);
+            $result = $tempArr[0];
+            
+            if(!$result) {
                 throw new Exception("Can't update. Something went wrong during updating");
+            }
 
             return $result;
 

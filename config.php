@@ -24,8 +24,9 @@ define('ENVIROMENT', 'dev');
 define('SERVER_ADDRESS', $URL);
 
 set_include_path(get_include_path(). PATH_SEPARATOR . "core");
-set_include_path(get_include_path(). PATH_SEPARATOR . "interfaces");
 set_include_path(get_include_path(). PATH_SEPARATOR . "modules");
+set_include_path(get_include_path(). PATH_SEPARATOR . "interfaces");
+set_include_path(get_include_path(). PATH_SEPARATOR . "ajax");
 
 function __autoload($className) {
     require_once($className.".class.php");

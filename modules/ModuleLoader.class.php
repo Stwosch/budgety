@@ -7,7 +7,7 @@ class ModuleLoader {
         switch($module) {
 
             case 'home':
-                
+                require_once('offlineSite.php');
             break;
 
             default:
