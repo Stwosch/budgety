@@ -45,6 +45,14 @@ $(function(){
         return true;  
     }
 
+    (function deleteMessage() {
+
+        $(document).on('click', '.cancel_message', function(){
+
+            $(this).parent().css("display", "none");
+        });
+    })();
+
     function checkLogIn() {
 
         let username = $('#login_in-username').val().replace(/\s/g, '');
@@ -58,18 +66,25 @@ $(function(){
                 
                 if(data.value) {
 
-                    console.log('zalogowano');
-                    //przekierowanie do stronki
+                    location.assign("home");
+
                 } else {
-                    console.log('nie zalogowano');
-                    //komunikat nie zalogowano
+
+                    $('.messages-container').append(`<div class="error_message">
+                                                <i class="icon-attention"></i> 
+                                                Can't log in. Check your username or password.
+                                                <i class="icon-cancel-circled cancel_message"></i>
+                                            </div>`);
                 }
             });
 
         } else {
 
-            console.log('zle wypleniono')
-            //komunikat zle wypelniono
+            $('.messages-container').append(`<div class="error_message">
+                                                <i class="icon-attention"></i> 
+                                                Introduced forbidden data. Correct your fields.
+                                                <i class="icon-cancel-circled cancel_message"></i>
+                                            </div>`);
         }
     }
 
@@ -100,14 +115,21 @@ $(function(){
                     console.log('uzytkownik utworzony');
                 } else {
 
-                    console.log('taki uzytownik juz istnieje w bazie');
+                    $('.messages-container').append(`<div class="error_message">
+                                                        <i class="icon-attention"></i> 
+                                                        User with this name or email is already created.
+                                                        <i class="icon-cancel-circled cancel_message"></i>
+                                                    </div>`);
                 }
             });
 
         } else {
 
-            console.log('zle wypelniono');
-            //komunikat
+            $('.messages-container').append(`<div class="error_message">
+                                                <i class="icon-attention"></i> 
+                                                Introduced forbidden data. Correct your fields.
+                                                <i class="icon-cancel-circled cancel_message"></i>
+                                            </div>`);
         }
     }
 });

@@ -4,15 +4,17 @@ echo '
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Budgety App</title>
+        <title>Budgety</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="css/welcome/fontello/css/fontello.css" rel="stylesheet">
+        <link href="css/welcome/css/style.css" rel="stylesheet">
     </head>
     <body>
         <!--<a href="http://www.freepik.com/free-vector/money-video-game_939901.htm">Designed by Freepik</a>-->
+        <div class="messages-container"></div>
         <main class="main">
             <section class="form_section flexboxes log_in active">
                 <h2>Log in</h2>

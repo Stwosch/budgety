@@ -2,25 +2,26 @@
 
 class MainManager {
 
-    private $request;
-
     public function __construct($request) {
-        
-        $this->request = $request;
 
-        switch($this->request) {
+        if( $request === 'welcome' ||
+            $request === 'home') {
 
-            case 'home':
-                require_once($this->request.'.interface.php');
-            break;
-            
-            case 'checkLogIn':
-            	require_once($this->request.'.ajax.php');
-            break;
+            require_once($request.'.interface.php');
 
-            case 'checkSignUp':
-            	require_once($this->request.'.ajax.php');
-            break;
+        } 
+
+        else if (   $request === 'checkLogIn' ||
+                    $request === 'checkSignUp' ||
+                    $request === 'selectBudget' ||
+                    $request === 'saveBudget') {
+
+            require_once($request.'.ajax.php');
+        }
+
+        else if (   $request === 'logout') {
+
+            require_once($request.'.helper.php');
         }
     }
 }

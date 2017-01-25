@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2017 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="attention" unicode="&#xe801;" d="M0 350q0 95 37 182t100 149 149 100 183 37q95 0 181-37t150-100 100-149 37-182q0-95-37-182t-100-150-150-100-181-37q-96 0-183 37t-149 100-100 150-37 182z m387 196l27-244q2-21 17-35t36-17q24-3 43 12t21 40l27 244v17q-4 35-31 58t-63 19-58-31-19-63z m12-411q0-30 22-52t51-21 52 21 22 52-22 52q-20 20-52 20t-51-20q-22-22-22-52z" horiz-adv-x="937.5" />
+
+<glyph glyph-name="cancel-circled" unicode="&#xf06e;" d="M0 350q0 95 37 182t100 149 150 100 182 37 182-37 149-100 100-149 37-182-37-182-100-150-149-100-182-37-182 37-150 100-100 150-37 182z m261-155q0-22 15-38 15-15 37-15 22 0 37 15l119 119 118-119q15-15 37-15 22 0 37 15 15 16 15 38t-15 37l-118 118 118 119q15 15 15 37t-15 37-37 15-37-15l-118-119-119 119q-15 15-37 15t-37-15q-15-15-15-37t15-37l118-119-118-118q-15-15-15-37z" horiz-adv-x="937.5" />
+</font>
+</defs>
+</svg>
