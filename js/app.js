@@ -52,26 +52,34 @@ const budgetController = (() => {
 	}
 
 	return {
-		addItem: (type, desc, val) => {
+		addItem: (type, desc, val, id) => {
 
-			let newItem, ID;
-
-			// 1. Create ID
-			if(data.allItems[type].length > 0)
-				ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
-			else 
-				ID = 0;
+			let newItem;
 
 			// 2. Create new instance of item
 			if(type === 'exp')
-				newItem = new Expense(ID, desc, val);
+				newItem = new Expense(id, desc, val);
 			else if(type === 'inc')
-				newItem = new Income(ID, desc, val);
+				newItem = new Income(id, desc, val);
 
 			// 3. Push item to data items array
 			data.allItems[type].push(newItem);
 
 			//4. Return new instance of item
+			return newItem;
+		},
+
+		loadItem: (type, desc, val, id) => {
+
+			let newItem;
+
+			if(type === 'exp')
+				newItem = new Expense(id, desc, val);
+			else if(type === 'inc')
+				newItem = new Income(id, desc, val);
+
+			data.allItems[type].push(newItem);
+
 			return newItem;
 		},
 
@@ -335,19 +343,20 @@ const controller = ((budgetCtrl, UICtrl) => {
 
 		if(input.description !== "" && !isNaN(input.value) && input.value > 0) {
 
-			// 2. Create new instance of item and adds to data budget controller
-			const newItem = budgetCtrl.addItem(input.type, input.description, input.value);
-			// 3. Add item to the UI
-			UICtrl.addListItem(newItem, input.type);
-			// 4. Clear fields
-			UICtrl.clearFields();
-			// 5. Update budget
-			updateBudget();
-			// 6. Calculate and update percentages
-			updatePercentages();
-			// 7. Save value in database
-			saveBudget(input.type, input.description, input.value);
+			sendToAjax('saveBudget', {type: input.type, description: input.description, value: input.value}, function(data) {
 
+				// 2. Create new instance of item and adds to data budget controller
+				const newItem = budgetCtrl.addItem(input.type, input.description, input.value, data.id);
+				// 3. Add item to the UI
+				UICtrl.addListItem(newItem, input.type);
+				// 4. Clear fields
+				UICtrl.clearFields();
+				// 5. Update budget
+				updateBudget();
+				// 6. Calculate and update percentages
+				updatePercentages();
+
+			});
 		}
 	}
 
@@ -380,18 +389,13 @@ const controller = ((budgetCtrl, UICtrl) => {
 
 			 	for(obj of data) {
 
-			 		let newItem = budgetCtrl.addItem(obj.type, obj.description, parseFloat(obj.value));
-			 		UICtrl.addListItem(newItem, obj.type);
-			 		updateBudget();
-			 		updatePercentages();
-			 	}
-			 	
+				 	let newItem = budgetCtrl.loadItem(obj.type, obj.description, parseFloat(obj.value), obj.id_item);
+				 	UICtrl.addListItem(newItem, obj.type);
+				 	updateBudget();
+				 	updatePercentages();
+				 }
+
 			 });
-	}
-
-	function saveBudget(type, description, value) {
-
-		sendToAjax('saveBudget', {type: type, description: description, value: value}, () => true);
 	}
 	
 	return {
