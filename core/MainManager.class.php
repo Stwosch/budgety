@@ -14,7 +14,8 @@ class MainManager {
         else if (   $request === 'checkLogIn' ||
                     $request === 'checkSignUp' ||
                     $request === 'selectBudget' ||
-                    $request === 'saveBudget') {
+                    $request === 'saveBudget' ||
+                    $request === 'deleteItem') {
 
             require_once($request.'.ajax.php');
         }

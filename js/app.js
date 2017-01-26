@@ -93,6 +93,11 @@ const budgetController = (() => {
 			}
 		},
 
+		deleteItemDB: id => {
+
+			sendToAjax('deleteItem', {id: id}, () => true);
+		},
+
 		calculateBudget: () => {
 
 			// 1. Calculate total income and expenses
@@ -379,6 +384,8 @@ const controller = ((budgetCtrl, UICtrl) => {
 			updateBudget();
 			// 6. Calculate and update percentages
 			updatePercentages();
+			// 7. Delete item from database
+			budgetCtrl.deleteItemDB(ID);
 		}
 	}
 
