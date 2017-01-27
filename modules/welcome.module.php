@@ -4,49 +4,88 @@ echo '
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Budgety</title>
         <meta charset="UTF-8">
+        <title>Budgety</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link href="css/welcome/fontello/css/fontello.css" rel="stylesheet">
         <link href="css/welcome/css/style.css" rel="stylesheet">
     </head>
     <body>
-        <!--<a href="http://www.freepik.com/free-vector/money-video-game_939901.htm">Designed by Freepik</a>-->
         <div class="messages-container"></div>
-        <main class="main">
-            <section class="form_section flexboxes log_in active">
-                <h2>Log in</h2>
-                <input type="text" placeholder="Username" id="login_in-username">
-                <input type="password" placeholder="Password" id="login_in-password">
-                <button type="button" class="form_btn" id="login_in-btn">Log in</button>
-                <a href="#">Forgotten your password?</a>
-                <p class="change">Don\'t have an account? Sign up</p>
-            </section>
-            <section hidden class="form_section flexboxes sign_up">
-                <h2>Sign up</h2>
-                <input type="text" placeholder="Username" id="sign_up-username">
-                <input type="email" placeholder="E-mail" id="sign_up-email">
-                <input type="password" placeholder="Password" id="sign_up-password">
-                <input type="password" placeholder="Repeat Password" id="sign_up-repeatpassword">
-                <button type="button" class="form_btn" id="sign_up-btn">Sign up</button>
-                <a href="#">Forgotten your password?</a>
-                <p class="change">Do you have an account? Log in</p>
-            </section>
-            <section class="info_section flexboxes">
-                <header>
-                    <h1 class="page-heading">Budgety App</h1>
-                </header>
-                <div class="info_section-wrapper">
-                    <h2>Be sure your money!</h2>
-                    <ul>
-                        <li>Control your incomes and expenses</li>
-                        <li>Compare revenues with other months</li>
-                        <li>Lead your own savings calendar</li>
-                    </ul>
+        <!--<a href="http://www.freepik.com/free-vector/blue-logo-of-letter-b_842921.htm">Designed by Freepik</a>-->
+        <header class="page_header">
+            <img src="img/budgety_logo.svg" alt="Logo" width="200">
+            <h1 class="page_heading">budgety</h1>
+        </header>
+        <main>
+            <div class="row">
+                <div class="form_selection active">
+                    <h2>Log in</h2>
                 </div>
-            </section>
+                <div class="form_selection">
+                    <h2>Sign up</h2>
+                </div>
+            </div>
+            <form>
+                <div class="row">
+                    <div class="fields-container">
+                        <input type="text" placeholder="Username" class="field" id="login_in-username">
+                        <label for="login_in-username">
+                            <i class="icon-user"></i>    
+                        </label> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="fields-container">
+                        <input type="password" placeholder="Password" class="field" id="login_in-password">
+                        <label for="login_in-password">
+                            <i class="icon-lock"></i>    
+                        </label> 
+                    </div>
+                </div>
+                <button type="submit" class="form_btn" id="login_in-btn">
+                    <i class="icon-ok"></i>
+                </button>
+            </form>
+            <form hidden>
+                <div class="row">
+                    <div class="fields-container">
+                        <input type="text" placeholder="Username" class="field" id="sign_up-username">
+                        <label for="sign_up-username">
+                            <i class="icon-user"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="fields-container">
+                        <input type="email" placeholder="E-mail" class="field" id="sign_up-email">
+                        <label for="sign_up-email">
+                            <i class="icon-mail-alt"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="fields-container">
+                        <input type="password" placeholder="Password" class="field" id="sign_up-password">
+                        <label for="sign_up-password">
+                            <i class="icon-lock"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="fields-container">
+                        <input type="password" placeholder="Repeat Password" class="field" id="sign_up-repeatpassword">
+                        <label for="sign_up-repeatpassword">
+                            <i class="icon-lock"></i>
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="form_btn" id="sign_up-btn">Get started</button>
+            </form>
+            <a class="forgot_password" href="#">Forgotten your password?</a> 
         </main>
         <script src="js/jquery-3.1.1.min.js"></script>
         <script src="js/ajax.js"></script>

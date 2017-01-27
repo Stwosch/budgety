@@ -1,45 +1,52 @@
+/*
+* === GENERAL ====
+*/
 html {
-  font-size: 10px; }
+  font-size: 62.5%; }
 
 body {
   font-size: 1.6rem;
   background: -webkit-linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../../img/background.jpeg") center center no-repeat;
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../../img/background.jpeg") center center no-repeat;
-  height: 100vh;
-  color: #FFFFFF;
-  font-family: 'Open Sans', sans-serif;
-  text-shadow: 1px 1px #000000; }
+  font-family: 'Open Sans', sans-serif; }
 
-ul {
-  padding: 0;
-  list-style-image: url("../../../img/moneta.png"); }
+::-webkit-input-placeholder {
+  color: #FFFFFF; }
 
-input {
-  display: block;
-  margin: 15px auto;
-  box-sizing: border-box;
-  padding: 8px;
-  outline: 0;
-  border: 0;
-  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.8);
-  border-radius: 5px;
-  width: 50%;
-  min-width: 200px; }
-  input:focus {
-    box-shadow: 0px 0px 6px 3px #3ADF8A; }
+::-moz-placeholder {
+  color: #FFFFFF; }
 
-a, p {
-  text-decoration: none;
-  color: #FFFFFF;
-  display: block;
-  margin: 5px auto;
-  font-size: 1.4rem;
-  cursor: pointer; }
-  a:hover, a:focus, p:hover, p:focus {
-    text-decoration: underline;
-    color: #FFFFFF;
-    outline: 0; }
+:-ms-input-placeholder {
+  color: #FFFFFF; }
 
+:-moz-placeholder {
+  color: #FFFFFF; }
+
+/*
+* === HEADER ====
+*/
+.page_header {
+  position: relative;
+  text-align: center;
+  margin: 10rem 0; }
+
+.page_heading {
+  position: absolute;
+  text-transform: uppercase;
+  font-weight: bold;
+  bottom: -20rem;
+  right: 50%;
+  -webkit-transform: translateX(50%);
+      -ms-transform: translateX(50%);
+          transform: translateX(50%);
+  font-size: 10rem;
+  text-shadow: .2rem .2rem #000000;
+  font-family: Arial, sans-serif;
+  color: #3055AB; }
+
+/*
+*   === MESSAGES ===
+*/
 .messages-container {
   position: absolute;
   top: 5%;
@@ -48,90 +55,137 @@ a, p {
 .error_message {
   background-color: #FFBABA;
   color: #D8000C;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 3px;
-  text-shadow: 0px 0px;
-  width: 280px; }
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: .3rem;
+  width: 28rem; }
 
 .cancel_message {
   float: right;
   cursor: pointer; }
 
-.flexboxes {
-  padding: 20px; }
-
-.page-heading {
-  color: #3366CC;
-  font-size: 8rem;
-  text-shadow: 3px 3px #000000; }
-
-.main {
-  padding-top: 250px;
-  padding-bottom: 80px;
-  margin: 0 auto;
+/*
+*   === MAIN ===
+*/
+main {
+  margin: 25rem auto 6rem auto;
   width: 80%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex; }
+  text-align: center; }
 
-.form_section {
-  text-align: center;
-  border-right: 1px solid #FFFFFF;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1; }
-  .form_section h2 {
-    font-size: 4rem; }
-  .form_section .form_btn {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 10px;
-    width: 50%;
-    min-width: 200px;
-    border: 0;
+/*
+*   --- Headers ---
+*/
+.form_selection {
+  display: inline-block; }
+  .form_selection h2 {
+    opacity: .7;
     color: #FFFFFF;
+    font-size: 4rem;
+    margin: 1.5rem 2.5rem 8rem 2.5rem;
     cursor: pointer;
-    background-color: #41BE7D;
-    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.8);
-    text-transform: uppercase;
-    font-size: 1.6rem;
-    font-weight: bold;
-    letter-spacing: 1px; }
-    .form_section .form_btn:hover, .form_section .form_btn:focus {
-      background-color: #3ADF8A;
-      outline: 0; }
-  .form_section a {
-    font-size: 1.4rem; }
+    position: relative;
+    text-transform: uppercase; }
+    .form_selection h2::before {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 0;
+      height: 1rem;
+      background-color: #2C60B3;
+      bottom: -1.2rem;
+      -webkit-transition: 1s;
+              transition: 1s; }
+    .form_selection h2:hover, .form_selection h2:focus {
+      opacity: 1; }
+      .form_selection h2:hover::before, .form_selection h2:focus::before {
+        width: 100%; }
 
-.info_section {
-  text-align: center;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1; }
-  .info_section h2 {
-    font-weight: 400;
-    font-size: 3.5rem; }
-  .info_section li {
-    font-size: 2rem;
-    margin: 5px 0;
-    list-style-position: inside; }
+.active h2 {
+  opacity: 1 !important; }
+  .active h2::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100% !important;
+    height: 1rem;
+    background-color: #2C60B3;
+    bottom: -1.2rem;
+    -webkit-transition: 1s;
+            transition: 1s; }
 
-@media (max-width: 768px) {
-  .main {
-    padding-top: 60px;
-    padding-bottom: 60px;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-    -webkit-flex-direction: column-reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse; }
+/*
+*   --- Forms ---
+*/
+.field {
+  display: inline-block;
+  margin: .75rem 0;
+  box-sizing: border-box;
+  padding: 2rem .5rem;
+  border: 0;
+  outline: 0;
+  text-indent: 5rem;
+  border-radius: 3rem;
+  width: 30rem;
+  background-color: #4F4B5A;
+  color: #FFFFFF;
+  opacity: .7;
+  font-family: 'Raleway', sans-serif; }
+  .field + label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: 1rem;
+    -webkit-transform: translateY(-0.45rem);
+        -ms-transform: translateY(-0.45rem);
+            transform: translateY(-0.45rem);
+    font-size: 2.5rem;
+    color: #FFFFFF;
+    opacity: .7; }
 
-  .form_section {
-    border: 0;
-    border-top: 1px solid #FFFFFF; } }
+.fields-container {
+  position: relative;
+  display: inline; }
+
+.row {
+  text-align: center; }
+
+.form_btn {
+  display: block;
+  padding: 1.4rem .5rem;
+  border-radius: 3rem;
+  width: 30rem;
+  box-shadow: 0 0 0.2rem 0 rgba(0, 0, 0, 0.35);
+  border: 0;
+  color: #FFFFFF;
+  cursor: pointer;
+  background-color: #2C60B3;
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin: .75rem auto;
+  font-family: 'Raleway', sans-serif; }
+  .form_btn:hover, .form_btn:focus {
+    background-color: #3576C4;
+    outline: 0; }
+
+/*
+*   --- Links ---
+*/
+.forgot_password {
+  display: inline-block;
+  margin-top: 3rem;
+  color: #FFFFFF;
+  opacity: .7;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: auto; }
+  .forgot_password:focus, .forgot_password:hover {
+    opacity: 1; }
+
+@media (max-width: 550px) {
+  html {
+    font-size: 50%; } }
+@media (max-width: 400px) {
+  html {
+    font-size: 40%; } }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,3 +1,7 @@
 
-.icon-attention:before { content: '\e801'; } /* '' */
+.icon-attention:before { content: '\e800'; } /* '' */
+.icon-user:before { content: '\e801'; } /* '' */
+.icon-lock:before { content: '\e802'; } /* '' */
+.icon-ok:before { content: '\e803'; } /* '' */
 .icon-cancel-circled:before { content: '\f06e'; } /* '' */
+.icon-mail-alt:before { content: '\f0e0'; } /* '' */

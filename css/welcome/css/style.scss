@@ -1,52 +1,48 @@
+/*
+* === GENERAL ====
+*/
+
 html {
-    font-size: 10px;
+    font-size: 62.5%;
 }
 
 body {
     font-size: 1.6rem;
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../../img/background.jpeg') center center no-repeat;
-    height: 100vh;
-    color: #FFFFFF;
     font-family: 'Open Sans', sans-serif;
-    text-shadow: 1px 1px #000000;
 }
 
-ul {
-    padding: 0;
-    list-style-image: url('../../../img/moneta.png');
+::-webkit-input-placeholder { color: #FFFFFF; }
+::-moz-placeholder { color: #FFFFFF; }
+:-ms-input-placeholder { color: #FFFFFF; }
+:-moz-placeholder { color: #FFFFFF; }
+
+/*
+* === HEADER ====
+*/
+
+.page_header {
+    position: relative;
+    text-align: center;
+    margin: 10rem 0;
 }
 
-input {
-    display: block;
-    margin: 15px auto;
-    box-sizing: border-box;
-    padding: 8px;
-    outline: 0;
-    border: 0;
-    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.8);
-    border-radius: 5px;
-    width: 50%;
-    min-width: 200px;
-
-    &:focus {
-        box-shadow: 0px 0px 6px 3px #3ADF8A;
-    }
+.page_heading {
+    position: absolute;
+    text-transform: uppercase;
+    font-weight: bold;
+    bottom: -20rem;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 10rem;
+    text-shadow: .2rem .2rem #000000;
+    font-family: Arial, sans-serif;
+    color: #3055AB;
 }
 
-a, p {
-    text-decoration: none;
-    color: #FFFFFF;
-    display: block;
-    margin: 5px auto;
-    font-size: 1.4rem;
-    cursor: pointer;
-
-    &:hover, &:focus {
-        text-decoration: underline;
-        color: #FFFFFF;
-        outline: 0;
-    }
-}
+/*
+*   === MESSAGES ===
+*/
 
 .messages-container {
     position: absolute;
@@ -57,11 +53,10 @@ a, p {
 .error_message {
     background-color: #FFBABA;
     color: #D8000C;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 3px;
-    text-shadow: 0px 0px;
-    width: 280px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: .3rem;
+    width: 28rem;
 }
 
 .cancel_message {
@@ -69,88 +64,167 @@ a, p {
     cursor: pointer;
 }
 
-.flexboxes {
-    padding: 20px;
-}
+/*
+*   === MAIN ===
+*/
 
-.page-heading {
-    color: #3366CC;
-    font-size: 8rem;
-    text-shadow: 3px 3px #000000;
-}
-
-.main {
-    padding-top: 250px;
-    padding-bottom: 80px;
-    margin: 0 auto;
+main {
+    margin: 25rem auto 6rem auto;
     width: 80%;
-    display: flex;
+    text-align: center;
 }
 
-.form_section {
-    text-align: center;
-    border-right: 1px solid #FFFFFF;
-    flex: 1;
+/*
+*   --- Headers ---
+*/
+
+.form_selection {
+    display: inline-block;
 
     h2 {
-        font-size: 4rem;
-    }
-
-    .form_btn {
-        margin: 10px 0;
-        padding: 10px;
-        border-radius: 10px;
-        width: 50%;
-        min-width: 200px;
-        border: 0;
+        opacity: .7;
         color: #FFFFFF;
+        font-size: 4rem;
+        margin: 1.5rem 2.5rem 8rem 2.5rem;
         cursor: pointer;
-        background-color: #41BE7D;
-        box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.8);
+        position: relative;
         text-transform: uppercase;
-        font-size: 1.6rem;
-        font-weight: bold;
-        letter-spacing: 1px;
 
-        &:hover, &:focus {
-            background-color: #3ADF8A;
-            outline: 0;
+        &::before {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 1rem;
+            background-color: #2C60B3;
+            bottom: -1.2rem;
+            transition: 1s;
+        }
+
+        &:hover,
+        &:focus {
+            opacity: 1;
+
+            &::before {
+                width: 100%;
+            }
         }
     }
-
-    a {
-        font-size: 1.4rem;
-    }
 }
 
-.info_section {
-    text-align: center;
-    flex: 1;
+.active {
 
     h2 {
-        font-weight: 400;
-        font-size: 3.5rem;
+        opacity: 1 !important;
+
+         &::before {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 100% !important;
+            height: 1rem;
+            background-color: #2C60B3;
+            bottom: -1.2rem;
+            transition: 1s;
+        }
+    } 
+}
+
+/*
+*   --- Forms ---
+*/
+
+.field {
+    display: inline-block;
+    margin: .75rem 0;
+    box-sizing: border-box;
+    padding: 2rem .5rem;
+    border: 0;
+    outline: 0;
+    text-indent: 5rem;
+    border-radius: 3rem;
+    width: 30rem;
+    background-color: #4F4B5A;
+    color: #FFFFFF;
+    opacity: .7;
+    font-family: 'Raleway', sans-serif;
+    
+
+    &:focus {
+
     }
 
-    li {
-        font-size: 2rem;
-        margin: 5px 0;
-        list-style-position: inside;
+    +label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-left: 1rem;
+        transform: translateY(-.45rem);
+        font-size: 2.5rem;
+        color: #FFFFFF;
+        opacity: .7;
+    }
+}
+
+.fields-container {
+    position: relative;
+    display: inline;
+}
+
+.row {
+    text-align: center;
+}
+
+.form_btn {
+    display: block;
+    padding: 1.4rem .5rem;
+    border-radius: 3rem;
+    width: 30rem;
+    box-shadow: 0 0 .2rem 0 rgba(0,0,0,.35);
+    border: 0;
+    color: #FFFFFF;
+    cursor: pointer;
+    background-color: #2C60B3;
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin: .75rem auto;
+    font-family: 'Raleway', sans-serif;
+
+    &:hover, 
+    &:focus {
+        background-color: #3576C4;
+        outline: 0;
+    }
+}
+
+/*
+*   --- Links ---
+*/
+
+.forgot_password {
+    display: inline-block;
+    margin-top: 3rem;
+    color: #FFFFFF;
+    opacity: .7;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: auto;
+
+    &:focus,
+    &:hover {
+        opacity: 1;
     }
 
 }
 
-@media (max-width: 768px) {
-
-    .main {
-        padding-top: 60px;
-        padding-bottom: 60px;
-        flex-direction: column-reverse;
+@media (max-width: 550px) {
+    html {
+        font-size: 50%;
     }
+}
 
-    .form_section {
-        border: 0;
-        border-top: 1px solid #FFFFFF;
+@media(max-width: 400px) {
+    html {
+        font-size: 40%;
     }
-
 }
