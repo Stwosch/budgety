@@ -85,7 +85,9 @@ echo '
         </div>
         <script src="js/jquery-3.1.1.min.js"></script>
         <script src="js/ajax.js"></script>
-        <script src="js/app.js"></script>
+        <script src="js/app/budget.js"></script>
+        <script src="js/app/userInterface.js"></script>
+        <script src="js/app/main.js"></script>
     </body>
 </html>
 ';
