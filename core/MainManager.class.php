@@ -15,7 +15,8 @@ class MainManager {
                     $request === 'checkSignUp' ||
                     $request === 'selectBudget' ||
                     $request === 'saveBudget' ||
-                    $request === 'deleteItem') {
+                    $request === 'deleteItem' ||
+                    $request === 'selectUsername') {
 
             require_once($request.'.ajax.php');
         }

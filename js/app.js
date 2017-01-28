@@ -142,19 +142,20 @@ const budgetController = (() => {
 const UIController = (() => {
 
 	const DOMstrings = {
-		inputType: '.add-type',
-		inputDescription: '.add-description',
-		inputValue: '.add-value',
-		inputBtn: '.add-btn',
-		incomeContainer: '.income-list',
-		expensesContainer: '.expenses-list',
-		budgetLabel: '.budget-summarized-value',
-		incomeLabel: '.budget-income .budget-value',
-		expenseLabel: '.budget-expenses .budget-value',
-		percentageLabel: '.budget-expenses .budget-percentage',
-		container: '.items_container',
-		itemPercentage: '.item-percentage',
-		dateLabel: '.budget-month'
+		inputType: $('.add-type'),
+		inputDescription: $('.add-description'),
+		inputValue: $('.add-value'),
+		inputBtn: $('.add-btn'),
+		incomeContainer: $('.income-list'),
+		expensesContainer: $('.expenses-list'),
+		budgetLabel: $('.budget-summarized-value'),
+		incomeLabel: $('.budget-income .budget-value'),
+		expenseLabel: $('.budget-expenses .budget-value'),
+		percentageLabel: $('.budget-expenses .budget-percentage'),
+		container: $('.items_container'),
+		itemPercentage: $('.item-percentage'),
+		dateLabel: $('.budget-month'),
+		username: $('.user_name')
 	};
 
 	function formatNumber(num, type) {
@@ -187,9 +188,9 @@ const UIController = (() => {
 
 		getInput: () => {
 			return {
-				type: $(DOMstrings.inputType).val(),
-				description: $(DOMstrings.inputDescription).val(),
-				value: parseFloat($(DOMstrings.inputValue).val())
+				type: DOMstrings.inputType.val(),
+				description: DOMstrings.inputDescription.val(),
+				value: parseFloat(DOMstrings.inputValue.val())
 			}
 		},
 
@@ -230,7 +231,7 @@ const UIController = (() => {
 
             // 3. Insert the HTML into the DOM
 
-            $(element).append(newHtml);
+            element.append(newHtml);
 
 		},
 
@@ -241,13 +242,14 @@ const UIController = (() => {
 
 		clearFields: () => {
 
-			$(`${DOMstrings.inputDescription}, ${DOMstrings.inputValue}`).val("");
+			DOMstrings.inputDescription.val("");
+			DOMstrings.inputValue.val("");
 
 		},
 
 		displayPercentages: percentages => {
 
-			var fields = $(DOMstrings.itemPercentage);
+			var fields = DOMstrings.itemPercentage;
 
 
 			for(let i = 0; i < fields.length; i++) {
@@ -269,14 +271,14 @@ const UIController = (() => {
 			if(obj.budget >= 0) type = 'inc';
 			else type = 'exp';
 
-			$(DOMstrings.budgetLabel).text(formatNumber(obj.budget, type));
-			$(DOMstrings.incomeLabel).text(formatNumber(obj.totalInc, 'inc'));
-			$(DOMstrings.expenseLabel).text(formatNumber(obj.totalExp, 'exp'));
+			DOMstrings.budgetLabel.text(formatNumber(obj.budget, type));
+			DOMstrings.incomeLabel.text(formatNumber(obj.totalInc, 'inc'));
+			DOMstrings.expenseLabel.text(formatNumber(obj.totalExp, 'exp'));
 
 			if(obj.percentage > 0)
-				$(DOMstrings.percentageLabel).text(obj.percentage + '%');
+				DOMstrings.percentageLabel.text(obj.percentage + '%');
 			else 
-				$(DOMstrings.percentageLabel).text('---');
+				DOMstrings.percentageLabel.text('---');
 		},
 
 		displayDate: () => {
@@ -288,19 +290,23 @@ const UIController = (() => {
 			const month = date.getMonth();
 			const year = date.getFullYear();
 
-			$(DOMstrings.dateLabel).text(months[month] + ' ' + year);
+			DOMstrings.dateLabel.text(months[month] + ' ' + year);
 
 		},
 
 		changeTypeStyle: () => {
 
-			$(DOMstrings.inputType + ',' + DOMstrings.inputDescription + ',' + DOMstrings.inputValue).toggleClass('red-focus');
+			DOMstrings.inputType.toggleClass('red-focus');
+			DOMstrings.inputDescription.toggleClass('red-focus'); 
+			DOMstrings.inputValue.toggleClass('red-focus');
 
-			$(DOMstrings.inputBtn).toggleClass('red');
+			DOMstrings.inputBtn.toggleClass('red');
 		},
 
-		getDOMstrings: () => DOMstrings
-		
+		getDOMstrings: () => DOMstrings,
+
+		setUsername: name => DOMstrings.username.html(name)
+
 	};
 
 })();
@@ -312,13 +318,13 @@ const controller = ((budgetCtrl, UICtrl) => {
 		const DOMstrings = UICtrl.getDOMstrings();
 
 		// Add item on click button
-		$(DOMstrings.inputBtn).on('click', ctrlAddItem);
+		DOMstrings.inputBtn.on('click', ctrlAddItem);
 		// Add item on press enter
 		$(window).keypress(e => { if(e.keypress === 13 || e.which === 13) ctrlAddItem(); });
 		// Delete item on click button
-		$(DOMstrings.container).on('click', ctrlDeleteItem);
+		DOMstrings.container.on('click', ctrlDeleteItem);
 		// Change type while changing select field
-		$(DOMstrings.inputType).change(UICtrl.changeTypeStyle);
+		DOMstrings.inputType.change(UICtrl.changeTypeStyle);
 	}
 
 	function updateBudget() {
@@ -393,16 +399,27 @@ const controller = ((budgetCtrl, UICtrl) => {
 
 			// 1. We send ajax in order select values from database
 			 sendToAjax('selectBudget', {}, data => {
+				 
+				 if(data) {
 
-			 	for(obj of data) {
+					 for(obj of data) {
 
-				 	let newItem = budgetCtrl.loadItem(obj.type, obj.description, parseFloat(obj.value), obj.id_item);
-				 	UICtrl.addListItem(newItem, obj.type);
-				 	updateBudget();
-				 	updatePercentages();
+						let newItem = budgetCtrl.loadItem(obj.type, obj.description, parseFloat(obj.value), obj.id_item);
+						UICtrl.addListItem(newItem, obj.type);
+						updateBudget();
+						updatePercentages();
+					}
 				 }
 
 			 });
+	}
+
+	function setUsername() {
+
+		sendToAjax('selectUsername', {}, data => {
+
+			UICtrl.setUsername(data.username);
+		});
 	}
 	
 	return {
@@ -415,6 +432,7 @@ const controller = ((budgetCtrl, UICtrl) => {
 			});
 			setBudget();			
 			setupEventListeners();
+			setUsername();
 			UICtrl.displayDate();
 		}
 	};

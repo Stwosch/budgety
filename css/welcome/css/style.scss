@@ -46,8 +46,9 @@ body {
 
 .messages-container {
     position: absolute;
-    top: 5%;
+    top: 3%;
     right: 2%;
+    z-index: 999;
 }
 
 .error_message {
@@ -56,11 +57,9 @@ body {
     padding: 1rem;
     margin-bottom: 1rem;
     border-radius: .3rem;
-    width: 28rem;
 }
 
 .cancel_message {
-    float: right;
     cursor: pointer;
 }
 
@@ -80,15 +79,17 @@ main {
 
 .form_selection {
     display: inline-block;
+    margin: 1.5rem 2.5rem 8rem 2.5rem;
 
     h2 {
         opacity: .7;
         color: #FFFFFF;
         font-size: 4rem;
-        margin: 1.5rem 2.5rem 8rem 2.5rem;
+        margin: 0;
         cursor: pointer;
         position: relative;
         text-transform: uppercase;
+        outline: 0;
 
         &::before {
             content: "";
@@ -151,7 +152,7 @@ main {
     
 
     &:focus {
-
+        opacity: .9;
     }
 
     +label {
@@ -197,18 +198,25 @@ main {
     }
 }
 
+.field_error {
+    box-shadow: 0 0 .5rem .3rem #D8000C;
+    border: .1rem solid red;
+}
+
 /*
 *   --- Links ---
 */
 
-.forgot_password {
-    display: inline-block;
+.links {
+    display: block;
     margin-top: 3rem;
     color: #FFFFFF;
     opacity: .7;
     text-decoration: none;
     font-weight: bold;
     text-align: auto;
+    outline: 0;
+    cursor: pointer;
 
     &:focus,
     &:hover {
@@ -217,9 +225,52 @@ main {
 
 }
 
+/*
+*   --- Guides ---
+*/
+
+.guide-content {
+    padding: 4rem;
+    background-color: rgba(79, 75, 90, .9);
+    color: #EDEEEE;
+    width: 45%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.guide-header {
+    margin-top: 0;
+}
+
+.guide-back_btn {
+    display: block;
+    padding: 1.4rem .5rem;
+    border-radius: 3rem;
+    width: 20rem;
+    box-shadow: 0 0 .2rem 0 rgba(0,0,0,.35);
+    border: 0;
+    color: #FFFFFF;
+    cursor: pointer;
+    background-color: #2C60B3;
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin: 3rem auto 0 auto;
+    font-family: 'Raleway', sans-serif;
+
+    &:hover, 
+    &:focus {
+        background-color: #3576C4;
+        outline: 0;
+    }
+}
+
 @media (max-width: 550px) {
     html {
         font-size: 50%;
+    }
+
+    .guide-content {
+        width: 80%;
     }
 }
 

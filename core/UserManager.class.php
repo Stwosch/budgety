@@ -28,7 +28,8 @@ class UserManager {
 		if($checkedUser) return false;
 
 		self::addUser($username, $password, $email);
-
+		$arr = self::getUserId($username, $email);
+		self::getSession($arr['id_users']);
 		return true;
 	}
 
@@ -56,6 +57,11 @@ class UserManager {
 	static private function addUser($username, $password, $email) {
 
 		DatabaseManager::changeValSQL('INSERT INTO users (username, password, email) VALUES (:s0, :s1, :s2)', [$username, $password, $email]);
+	}
+
+	static private function getUserId($username, $email) {
+
+		return DatabaseManager::selectValSQL('SELECT id_users FROM users WHERE username = :s0 AND email = :s1 LIMIT 1', [$username, $email]);
 	}
 
 }

@@ -11,5 +11,5 @@ function sendToAjax(destination, value, callback) {
         });
     };
 
-    async().then(val => { let data = $.parseJSON(val); callback(data); }, err => console.log(err));
+    async().then( val => { let data = $.parseJSON(val); callback(data); }, err => console.log(err));
 }

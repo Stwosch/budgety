@@ -41,6 +41,12 @@
       "css": "ok",
       "code": 59395,
       "src": "fontawesome"
+    },
+    {
+      "uid": "5308d824454af8ec7835786e272361a9",
+      "css": "level-up",
+      "code": 59396,
+      "src": "entypo"
     }
   ]
 }

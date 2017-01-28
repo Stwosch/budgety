@@ -15,9 +15,9 @@ echo '
     </head>
     <body>
         <header class="masthead">
-            <div class="logo">Budgety</div>
+            <img src="img/budgety_logo.svg" alt="Logo" width="50" height="50">
             <div class="user_data">
-                <span>%Username%</span>
+                <span class="user_name"></span>
                 <img class="user_image" src="img/placeholder-user.png" alt="User\'s photo">
             </div>
         </header>
@@ -45,16 +45,16 @@ echo '
                             <h2 class="budget-title">
                                 Available Budget in <span class="budget-month">%Month%</span>:
                             </h2>
-                            <div class="budget-summarized-value">+ 2,345.64</div>
+                            <div class="budget-summarized-value"></div>
                             <div class="budget-income">
                                 <div class="budget-text">Income</div>
-                                <div class="budget-value">+ 4,300.00</div>
+                                <div class="budget-value"></div>
                                 <div class="budget-percentage">&nbsp;</div>
                             </div>
                             <div class="budget-expenses">
                                 <div class="budget-text">Expenses</div>
-                                <div class="budget-value">- 1,954.36</div>
-                                <div class="budget-percentage">45%</div>
+                                <div class="budget-value"></div>
+                                <div class="budget-percentage"></div>
                             </div>
                         </div>
                     </section>
