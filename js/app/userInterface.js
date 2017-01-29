@@ -12,7 +12,7 @@ const UIController = (() => {
 		expenseLabel: $('.budget-expenses .budget-value'),
 		percentageLabel: $('.budget-expenses .budget-percentage'),
 		container: $('.items_container'),
-		itemPercentage: $('.item-percentage'),
+		itemPercentage: '.item-percentage',
 		dateLabel: $('.budget-month'),
 		username: $('.user_name')
 	};
@@ -78,7 +78,7 @@ const UIController = (() => {
                             <div class="item-description">%description%</div>
                             <div class="item-value">%value%</div>
                             <button class="item-delete_btn icon-cancel-circled2"></i></button>
-                            <div class="item-percentage">21%</div>
+                            <div class="item-percentage">---</div>
                         </div>`;
             }
 
@@ -108,17 +108,18 @@ const UIController = (() => {
 
 		displayPercentages: percentages => {
 
-			var fields = DOMstrings.itemPercentage;
-
+            let fields = $(DOMstrings.itemPercentage);
 
 			for(let i = 0; i < fields.length; i++) {
 
-				((fields, i) => {
+                if(percentages[i] > 0) {
 
-					if(percentages[i] > 0) fields.textContent = percentages[i] + '%';
-					else fields.textContent = '---'; 
-					
-				})(fields[i], i);
+                    fields[i].textContent = percentages[i] + '%';
+
+                } else { 
+                    
+                    fields[i].textContent = '---'; 	
+                }	
 			}
 
 		},

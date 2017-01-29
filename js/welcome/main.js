@@ -169,7 +169,7 @@ $(function(){
 
             if(data.value) {
 
-                    location.assign("home");
+                    location.assign("home#start");
 
                 } else {
 

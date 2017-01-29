@@ -26,14 +26,19 @@ echo '
                 <nav>
                     <ul>
                         <li>
-                            <i class="icon-th-large"></i> Start
+                            <a href="#start">
+                                <i class="icon-th-large"></i> Start
+                            </a>
                         </li>
                         <li>
-                            <i class="icon-pencil"></i> Management
+                            <a href="#managment">
+                                <i class="icon-pencil"></i> Management
+                            </a>
                         </li>
-                        <li>
-                            <i class="icon-lock"></i> 
-                            <a href="logout">Log out</a>
+                        <li> 
+                            <a href="logout">
+                                <i class="icon-lock"></i> Log out
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -87,6 +92,7 @@ echo '
         <script src="js/ajax.js"></script>
         <script src="js/app/budget.js"></script>
         <script src="js/app/userInterface.js"></script>
+        <script src="js/app/router.js"></script>
         <script src="js/app/main.js"></script>
     </body>
 </html>

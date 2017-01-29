@@ -85,17 +85,17 @@ body {
   margin: 3rem 0;
   list-style-type: none;
   font-size: 2rem; }
-  .column_menu ul li {
+  .column_menu ul a {
+    display: block;
     position: relative;
     padding: 1.2rem 0;
     padding-left: 3rem;
-    cursor: pointer; }
-    .column_menu ul li a {
-      text-decoration: none;
-      color: #000000; }
-    .column_menu ul li:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color: #000000; }
+    .column_menu ul a:hover {
       background-color: #EEEEEE; }
-      .column_menu ul li:hover:before {
+      .column_menu ul a:hover:before {
         content: "";
         position: absolute;
         display: block;

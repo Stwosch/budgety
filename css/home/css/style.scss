@@ -89,16 +89,14 @@ body {
 		list-style-type: none;
 		font-size: 2rem;
 
-		li {
+		a {
+			display: block;
 			position: relative;
 			padding: 1.2rem 0;
 			padding-left: 3rem;
 			cursor: pointer;
-
-            a {
-                text-decoration: none;
-                color: #000000;
-            }
+			text-decoration: none;
+            color: #000000;
 
 			&:hover {
 				background-color: #EEEEEE;

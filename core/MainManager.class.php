@@ -4,26 +4,19 @@ class MainManager {
 
     public function __construct($request) {
 
-        if( $request === 'welcome' ||
-            $request === 'home') {
+        switch($request) {
 
-            require_once($request.'.interface.php');
+            case 'welcome': 
+            case 'home': require_once($request.'.interface.php'); break;
 
-        } 
+            case 'logout': require_once($request.'.helper.php'); break;
 
-        else if (   $request === 'checkLogIn' ||
-                    $request === 'checkSignUp' ||
-                    $request === 'selectBudget' ||
-                    $request === 'saveBudget' ||
-                    $request === 'deleteItem' ||
-                    $request === 'selectUsername') {
-
-            require_once($request.'.ajax.php');
-        }
-
-        else if (   $request === 'logout') {
-
-            require_once($request.'.helper.php');
+            case 'checkLogIn':
+            case 'checkSignUp':
+            case 'selectBudget':
+            case 'saveBudget':
+            case 'deleteItem':
+            case 'selectUsername': require_once($request.'.ajax.php'); break;
         }
     }
 }
