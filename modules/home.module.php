@@ -10,7 +10,9 @@ echo '
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
         <link href="css/home/fontello/css/fontello.css" rel="stylesheet">
-        <link href="css/home/css/style.css" rel="stylesheet">
+        <link href="css/home/css/main/main.css" rel="stylesheet">
+        <link href="css/home/css/start/start.css" rel="stylesheet">
+        <link href="css/home/css/managment/managment.css" rel="stylesheet">
         <title>Budgety</title>
     </head>
     <body>

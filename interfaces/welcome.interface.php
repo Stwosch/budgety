@@ -2,7 +2,7 @@
 
 if($_SESSION) {
 	if($_SESSION['logged']){
-		header("Location: home");
+		header("Location: home#start");
 		exit;
 	}
 }

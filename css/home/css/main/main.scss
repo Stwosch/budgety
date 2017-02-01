@@ -11,14 +11,6 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.red {
-	color: #FF5049 !important; 
-}
-
-.red-focus:focus { 
-	border: 1px solid #FF5049 !important; 
-}
-
 /*
 *	=== GRID ===
 */
@@ -26,6 +18,7 @@ body {
 .container {
 	display: flex;
 }
+
 
 .column_menu {
 	flex: 1;
@@ -117,15 +110,13 @@ body {
 }
 
 /*
-* === BUDGET ===
+*   === MAIN ===
 */
 
-.budget_result {
-    height: 40rem;
-    background: linear-gradient(rgba(0, 0, 0, .35), rgba(0, 0, 0, .35)), url(../../../img/back.png), center;
-    background-size: cover;
-    position: relative;
-}
+/*
+*   --- Budget ---
+*/
+
 
 .budget {
 	position: absolute;
@@ -194,9 +185,8 @@ body {
 }
 
 /*
-* === ADD ===
+* --- Add ---
 */
-
 
 .add {
     padding: 1.4rem;
@@ -205,6 +195,7 @@ body {
     margin: 0 auto;
     text-align: center;
 }
+
 
 .add-type {
 	width: 5.5rem;
@@ -215,10 +206,18 @@ body {
     margin-right: 1rem;
     font-weight: 300;
     transition: border .3s;
+
+    &:focus {
+		outline: none;
+	    border: .1rem solid #28B9B5;
+	}
 }
 
 .add-description, 
-.add-value {
+.add-value,
+.add-name,
+.add-year,
+.add-month {
 	border: .1rem solid #E7E7E7;
     background-color: #FFFFFF;
     font-family: inherit;
@@ -229,13 +228,20 @@ body {
     margin-right: 1rem;
     border-radius: .5rem;
     transition: border .3s;
+
+    &:focus {
+		outline: none;
+	    border: .1rem solid #28B9B5;
+	}
 }
 
-.add-description {
+.add-description,
+.add-name {
 	width: 40rem;
 }
 
-.add-value {
+.add-value,
+.add-year {
 	width: 10rem;
 }
 
@@ -255,139 +261,5 @@ body {
 
     &:focus {
     	outline: none;
-    }
-}
-
-.add-type,
-.add-description,
-.add-value {
-
-	&:focus {
-		outline: none;
-	    border: .1rem solid #28B9B5;
-	}
-}
-    
-
-/*
-* === ITEMS ===
-*/
-
-	/*
-	* --- Income, Expenses ---
-	*/
-
-.items_container {
-	width: 100rem;
-    margin: 6rem auto;
-    display: flex;
-}
-
-.income, .expenses {
-	flex: 1;
-}
-
-.income {
-    margin-right: 2rem;
-
-    .item-value,
-    .item-delete_btn {
-    	color: #28B9B5;
-    }
-}
-
-.expenses {
-    margin-left: 2rem;
-
-    .item-value,
-    .item-percentage,
-    .item-delete_btn {
-    	color: #FF5049;
-    }
-}
-
-.income-title,
-.expenses-title {
-	text-transform: uppercase;
-    font-size: 1.8rem;
-    font-weight: 400;
-    margin-bottom: 1.5rem;
-}
-
-.income-title {
-	color: #28B9B5;
-}
-
-.expenses-title {
-	color: #FF5049;
-}
-
-	/*
-	* --- Items ---
-	*/
-
-.item {
-    padding: 1.3rem;
-    border-bottom: .1rem solid #E7E7E7;
-    text-align: right;
-
-    &:first-child {
-    	border-top: .1rem solid #E7E7E7;
-    }
-
-    &:nth-child(even) {
-    	background-color: #F7F7F7;
-    }
-
-    &:hover .item-delete_btn {
-    	display: inline-block;
-    }
-
-    &:hover .item-value {
-    	transform: translateX(-2rem);
-    }
-
-    &:hover .item-percentage {
-    	transform: translateX(-2rem);
-    }
-}
-
-.item-description { 
-    float: left;
-}
-
-.item-value {
-	display: inline-block;
-    transition: transform .3s;
-}
-
-.item-percentage {
-	float: right;
-    margin-left: 2rem;
-    transition: transform .3s;
-    font-size: 1.1rem;
-    background-color: #FFDAD9;
-    padding: .3rem;
-    border-radius: .3rem;
-    width: 3.2rem;
-    text-align: center;
-}
-
-.item-delete_btn {
-    font-size: 2.2rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    vertical-align: top;
-    display: none;
-    float: right;
-    transform: translateY(-.4rem);
-
-    &:focus {
-        outline: none;
-    }
-
-    &:active {
-        transform: translateY(-.2rem);
     }
 }

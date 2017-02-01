@@ -1,0 +1,64 @@
+/*
+* === GENERAL ===
+*/
+
+.background-managment {
+    background: linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)), url(../../../../img/background-managment.jpeg) no-repeat 50% 60%;
+    height: 40rem;
+    background-size: cover;
+    position: relative;
+}
+
+.table-data {
+    width: 80%;
+    margin: 5rem auto 0 auto;
+    border-collapse: collapse;
+    
+    tbody tr {
+
+        &:hover {
+            background-color: #F5F5F5;
+            cursor: pointer;
+        }
+    }
+
+    .plus {
+        
+        td:nth-child(6) {
+            color: green;
+        }
+    }
+
+    .minus {
+
+        td:nth-child(6) {
+            color: red;
+        }
+    }
+
+    td, th {
+        padding: 1rem;
+    }
+
+    th {
+        text-align: left;
+        border-bottom: .2rem solid #000000;
+        background-color: #C9DFF0;
+    }
+
+    td {
+        border-top: .1rem solid #000000;
+
+        &:first-child {
+            font-weight: bold;
+        }
+
+        &:nth-child(5) {
+            color: red;
+        }
+
+        &:nth-child(4) {
+            color: green;
+        }
+    }  
+}

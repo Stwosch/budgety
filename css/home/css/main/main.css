@@ -8,12 +8,6 @@ body {
   font-size: 1.6rem;
   font-family: 'Open Sans', sans-serif; }
 
-.red {
-  color: #FF5049 !important; }
-
-.red-focus:focus {
-  border: 1px solid #FF5049 !important; }
-
 /*
 *	=== GRID ===
 */
@@ -106,15 +100,11 @@ body {
         background-color: #169F87; }
 
 /*
-* === BUDGET ===
+*   === MAIN ===
 */
-.budget_result {
-  height: 40rem;
-  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(../../../img/back.png), center;
-  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(../../../img/back.png), center;
-  background-size: cover;
-  position: relative; }
-
+/*
+*   --- Budget ---
+*/
 .budget {
   position: absolute;
   width: 35rem;
@@ -173,7 +163,7 @@ body {
   margin-left: 1rem; }
 
 /*
-* === ADD ===
+* --- Add ---
 */
 .add {
   padding: 1.4rem;
@@ -192,9 +182,15 @@ body {
   font-weight: 300;
   -webkit-transition: border .3s;
           transition: border .3s; }
+  .add-type:focus {
+    outline: none;
+    border: .1rem solid #28B9B5; }
 
 .add-description,
-.add-value {
+.add-value,
+.add-name,
+.add-year,
+.add-month {
   border: .1rem solid #E7E7E7;
   background-color: #FFFFFF;
   font-family: inherit;
@@ -206,11 +202,20 @@ body {
   border-radius: .5rem;
   -webkit-transition: border .3s;
           transition: border .3s; }
+  .add-description:focus,
+  .add-value:focus,
+  .add-name:focus,
+  .add-year:focus,
+  .add-month:focus {
+    outline: none;
+    border: .1rem solid #28B9B5; }
 
-.add-description {
+.add-description,
+.add-name {
   width: 40rem; }
 
-.add-value {
+.add-value,
+.add-year {
   width: 10rem; }
 
 .add-btn {
@@ -229,116 +234,4 @@ body {
   .add-btn:focus {
     outline: none; }
 
-.add-type:focus,
-.add-description:focus,
-.add-value:focus {
-  outline: none;
-  border: .1rem solid #28B9B5; }
-
-/*
-* === ITEMS ===
-*/
-/*
-* --- Income, Expenses ---
-*/
-.items_container {
-  width: 100rem;
-  margin: 6rem auto;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex; }
-
-.income, .expenses {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1; }
-
-.income {
-  margin-right: 2rem; }
-  .income .item-value,
-  .income .item-delete_btn {
-    color: #28B9B5; }
-
-.expenses {
-  margin-left: 2rem; }
-  .expenses .item-value,
-  .expenses .item-percentage,
-  .expenses .item-delete_btn {
-    color: #FF5049; }
-
-.income-title,
-.expenses-title {
-  text-transform: uppercase;
-  font-size: 1.8rem;
-  font-weight: 400;
-  margin-bottom: 1.5rem; }
-
-.income-title {
-  color: #28B9B5; }
-
-.expenses-title {
-  color: #FF5049; }
-
-/*
-* --- Items ---
-*/
-.item {
-  padding: 1.3rem;
-  border-bottom: .1rem solid #E7E7E7;
-  text-align: right; }
-  .item:first-child {
-    border-top: .1rem solid #E7E7E7; }
-  .item:nth-child(even) {
-    background-color: #F7F7F7; }
-  .item:hover .item-delete_btn {
-    display: inline-block; }
-  .item:hover .item-value {
-    -webkit-transform: translateX(-2rem);
-        -ms-transform: translateX(-2rem);
-            transform: translateX(-2rem); }
-  .item:hover .item-percentage {
-    -webkit-transform: translateX(-2rem);
-        -ms-transform: translateX(-2rem);
-            transform: translateX(-2rem); }
-
-.item-description {
-  float: left; }
-
-.item-value {
-  display: inline-block;
-  -webkit-transition: -webkit-transform .3s;
-          transition: transform .3s; }
-
-.item-percentage {
-  float: right;
-  margin-left: 2rem;
-  -webkit-transition: -webkit-transform .3s;
-          transition: transform .3s;
-  font-size: 1.1rem;
-  background-color: #FFDAD9;
-  padding: .3rem;
-  border-radius: .3rem;
-  width: 3.2rem;
-  text-align: center; }
-
-.item-delete_btn {
-  font-size: 2.2rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  vertical-align: top;
-  display: none;
-  float: right;
-  -webkit-transform: translateY(-0.4rem);
-      -ms-transform: translateY(-0.4rem);
-          transform: translateY(-0.4rem); }
-  .item-delete_btn:focus {
-    outline: none; }
-  .item-delete_btn:active {
-    -webkit-transform: translateY(-0.2rem);
-        -ms-transform: translateY(-0.2rem);
-            transform: translateY(-0.2rem); }
-
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=main.css.map */

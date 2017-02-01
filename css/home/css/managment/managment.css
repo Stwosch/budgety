@@ -1,0 +1,37 @@
+/*
+* === GENERAL ===
+*/
+.background-managment {
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(../../../../img/background-managment.jpeg) no-repeat 50% 60%;
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(../../../../img/background-managment.jpeg) no-repeat 50% 60%;
+  height: 40rem;
+  background-size: cover;
+  position: relative; }
+
+.table-data {
+  width: 80%;
+  margin: 5rem auto 0 auto;
+  border-collapse: collapse; }
+  .table-data tbody tr:hover {
+    background-color: #F5F5F5;
+    cursor: pointer; }
+  .table-data .plus td:nth-child(6) {
+    color: green; }
+  .table-data .minus td:nth-child(6) {
+    color: red; }
+  .table-data td, .table-data th {
+    padding: 1rem; }
+  .table-data th {
+    text-align: left;
+    border-bottom: .2rem solid #000000;
+    background-color: #C9DFF0; }
+  .table-data td {
+    border-top: .1rem solid #000000; }
+    .table-data td:first-child {
+      font-weight: bold; }
+    .table-data td:nth-child(5) {
+      color: red; }
+    .table-data td:nth-child(4) {
+      color: green; }
+
+/*# sourceMappingURL=managment.css.map */
