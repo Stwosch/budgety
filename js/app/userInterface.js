@@ -23,8 +23,8 @@ const UIController = (() => {
 		num = num.toFixed(2);
 
 		const numSplit = num.split('.');
-		let int = numSplit[0];
 		const dec = numSplit[1];
+		let int = numSplit[0];
 
 		if(int.length > 3) {
 
@@ -43,17 +43,16 @@ const UIController = (() => {
 				type: $(DOMstrings.inputType).val(),
 				description: $(DOMstrings.inputDescription).val(),
 				value: parseFloat($(DOMstrings.inputValue).val())
-
 			}
 		},
 
 		addListItem: (obj, type) => {
 
-			let html, newHtml, element;
+			let html, element;
 
 			// 1. Create HTML placeholder
 
-			if(type === 'inc') {
+			if (type === 'inc') {
 
 				element = DOMstrings.incomeContainer;
 
@@ -64,7 +63,7 @@ const UIController = (() => {
                         </div>`;
             }
 
-            else if(type === 'exp') {
+            else if (type === 'exp') {
 
             	element = DOMstrings.expensesContainer;
 
@@ -78,30 +77,23 @@ const UIController = (() => {
 
             // 2. Replace placeholder with data 
 
-            newHtml = html.replace('%id%', obj.id);
-            newHtml = newHtml.replace('%description%', obj.description);
-            newHtml = newHtml.replace('%value%', formatNumber(obj.value, type));
+            html = html.replace('%id%', obj.id);
+            html = html.replace('%description%', obj.description);
+           	html = html.replace('%value%', formatNumber(obj.value, type));
 
             // 3. Insert the HTML into the DOM
 
-            $(element).append(newHtml);
+            $(element).append(html);
 
 		},
 
-		deleteListItem: selectorID => {
+		deleteListItem: selectorID => $(`#${selectorID}`).remove(),
 
-			$(`#${selectorID}`).remove();
-		},
-
-		clearFields: () => {
-
-			$(`${DOMstrings.inputDescription}, ${DOMstrings.inputValue}`).val("");
-
-		},
+		clearFields: () => $(`${DOMstrings.inputDescription}, ${DOMstrings.inputValue}`).val(""),
 
 		displayPercentages: percentages => {
 
-            let fields = $(DOMstrings.itemPercentage);
+            const fields = $(DOMstrings.itemPercentage);
 
 			for(let i = 0; i < fields.length; i++) {
 

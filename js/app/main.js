@@ -1,5 +1,3 @@
-
-
 const controller = ((budgetCtrl, UICtrl) => {
 
 	function setupEventListeners() {
@@ -41,23 +39,21 @@ const controller = ((budgetCtrl, UICtrl) => {
 		// 1. Get input values from user
 		const input = UICtrl.getInput();
 
-		if(input.description !== "" && !isNaN(input.value) && input.value > 0) {
+		if (input.description === "" || isNaN(input.value) || input.value < 0) return;
 
-			sendToAjax('saveBudget', {type: input.type, description: input.description, value: input.value}, function(data) {
+		budgetCtrl.saveBudget({type: input.type, description: input.description, value: input.value}, data => {
 
-				// 2. Create new instance of item and adds to data budget controller
-				const newItem = budgetCtrl.addItem(input.type, input.description, input.value, data.id);
-				// 3. Add item to the UI
-				UICtrl.addListItem(newItem, input.type);
-				// 4. Clear fields
-				UICtrl.clearFields();
-				// 5. Update budget
-				updateBudget();
-				// 6. Calculate and update percentages
-				updatePercentages();
-
-			});
-		}
+			// 2. Create new instance of item and adds to data budget controller
+			const newItem = budgetCtrl.addItem(input.type, input.description, input.value, data.id);
+			// 3. Add item to the UI
+			UICtrl.addListItem(newItem, input.type);
+			// 4. Clear fields
+			UICtrl.clearFields();
+			// 5. Update budget
+			updateBudget();
+			// 6. Calculate and update percentages
+			updatePercentages();
+		});
 	}
 
 	function ctrlDeleteItem(e) {
@@ -86,36 +82,34 @@ const controller = ((budgetCtrl, UICtrl) => {
 
 	function setBudget() {
 		
-			// 1. We send ajax in order select values from database
-			 sendToAjax('selectBudget', {}, data => {
-				 
-				 // IF statement is protection against data that doesn't contain any value,
-				//  it's possible beacuse users can don't have any values in database yet.
-				 if(data) {
-					 
-					 for(obj of data) {
-						let newItem = budgetCtrl.addItem(obj.type, obj.description, parseFloat(obj.value), parseInt(obj.id_item));
-						UICtrl.addListItem(newItem, obj.type);
-						updateBudget();
-						updatePercentages();
-					}
-				 }
+			budgetCtrl.selectBudget(obj => {
 
-			 });
+				const newItem = budgetCtrl.addItem(obj.type, obj.description, parseFloat(obj.value), parseInt(obj.id_item));
+				UICtrl.addListItem(newItem, obj.type);
+				updateBudget();
+				updatePercentages();
+			});
 	}
 
 	function setUsername() {
 
-		sendToAjax('selectUsername', {}, data => {
+		budgetCtrl.getUsername(data => {
 
-			UICtrl.setUsername(data.username);
+			UICtrl.setUsername(data);
 		});
+	}
+
+	function resetAllItems() {
+
+		// Clear tables with all objects
+		const data = budgetCtrl.getAllItems();
+		data.exp = [];
+		data.inc = [];
 	}
 	
 	return {
 		init: () => {
-			budgetCtrl.data.allItems.exp = [];
-			budgetCtrl.data.allItems.inc = [];
+			resetAllItems();
 			UICtrl.displayBudget({
 				budget: 0,
 				totalInc: 0,

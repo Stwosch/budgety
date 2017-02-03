@@ -51,38 +51,24 @@ const budgetController = (() => {
 	}
 
 	return {
-		data: data,
 
 		addItem: (type, desc, val, id) => {
 
 			let newItem;
 
-			// 2. Create new instance of item
-			if(type === 'exp')
+			// 1. Create new instance of item
+			if(type === 'exp') {
 				newItem = new Expense(id, desc, val);
-			else if(type === 'inc')
+			}
+			else if(type === 'inc') {
 				newItem = new Income(id, desc, val);
+			}
 
-			// 3. Push item to data items array
+			// 2. Push item to data items array
 			data.allItems[type].push(newItem);
 			
-			//4. Return new instance of item
+			//3. Return new instance of item
 			return newItem;
-		},
-
-		deleteItem: (type, id) => {
-			
-			const ids = data.allItems[type].map(v => parseInt(v.id));
-			const index = ids.indexOf(id);
-
-			if(index !== -1) {
-				data.allItems[type].splice(index, 1);
-			}
-		},
-
-		deleteItemDB: id => {
-
-			sendToAjax('deleteItem', {id: id}, () => true);
 		},
 
 		calculateBudget: () => {
@@ -97,32 +83,59 @@ const budgetController = (() => {
 			data.budget = data.totals.inc - data.totals.exp;
 
 			// 3. Calculate the percentage of income that we spent 
-			if(data.totals.inc > 0)
+			if(data.totals.inc > 0) {
 				data.percentage = Math.round(data.totals.exp / data.totals.inc * 100);
-			else 
+			}
+			else {
 				data.percentage = -1;
+			}	
 		},
 
-		calculatePercentage: () => {
+		calculatePercentage: () => data.allItems.exp.forEach(v => v.calcPercentage(data.totals.inc)),
 
-			data.allItems.exp.forEach(v => v.calcPercentage(data.totals.inc));
+		deleteItem: (type, id) => {
+			
+			const ids = data.allItems[type].map(v => parseInt(v.id));
+			const index = ids.indexOf(id);
+
+			if(index !== -1) {
+				data.allItems[type].splice(index, 1);
+			}
 		},
 
-		getPercentages: () => {
+		deleteItemDB: id => sendToAjax('deleteItem', {id: id}, () => {}),
 
-			const allPerc = data.allItems.exp.map(v => v.percentage);
-			return allPerc;
-		},
+		getPercentages: () => data.allItems.exp.map(v => v.percentage),
 
 		getBudget: () => {
-			console.log(data);
+
 			return {
 				budget: data.budget,
 				totalInc: data.totals.inc,
 				totalExp: data.totals.exp,
 				percentage: data.percentage
 			};
-		}
+		},
+
+		getAllItems: () => data.allItems,
+
+		selectBudget: callback => {
+
+			sendToAjax('selectBudget', {}, data => {
+				 
+				 // IF statement is protection against data that doesn't contain any value,
+				//  it's possible because users can don't have any values in database yet.
+				if(!data) return;
+					 
+				for(obj of data) {
+					callback(obj);
+				}
+			 });
+		},
+
+		getUsername: callback => sendToAjax('selectUsername', {}, data => callback(data.username)),
+
+		saveBudget: (obj, callback) => sendToAjax('saveBudget', obj, data => callback(data))
 	};
 
 })();
