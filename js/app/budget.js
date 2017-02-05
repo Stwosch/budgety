@@ -42,6 +42,11 @@ const budgetController = (() => {
 
 	};
 
+	const dates = {
+		month: 0,
+		year: 0
+	}
+
 	function calculateTotal(type) {
 
 		let sum = 0;
@@ -51,6 +56,20 @@ const budgetController = (() => {
 	}
 
 	return {
+
+		setDates: (month, year) => {
+
+			dates.month = month;
+			dates.year = year;
+		},
+
+		getDates: () => {
+
+			return {
+				month: dates.month,
+				year: dates.year
+			}
+		},
 
 		addItem: (type, desc, val, id) => {
 
@@ -119,17 +138,35 @@ const budgetController = (() => {
 
 		getAllItems: () => data.allItems,
 
-		selectBudget: callback => {
+		splitDates: date => {
 
-			sendToAjax('selectBudget', {}, data => {
+			let arr = date.split('/');
+			return {
+				month: arr[0],
+				year: arr[1]
+			}
+		},
+
+		selectBudget: (month, year, callback, elseCb, rest) => {
+
+			sendToAjax('selectBudget', {month: month, year: year}, data => {
 				 
 				 // IF statement is protection against data that doesn't contain any value,
 				//  it's possible because users can don't have any values in database yet.
-				if(!data) return;
-					 
-				for(obj of data) {
-					callback(obj);
-				}
+				if(data) {
+					for(obj of data) {
+						callback(obj);
+					}
+				} else {
+					elseCb(({
+						budget: 0,
+						totalInc: 0,
+						totalExp: 0,
+						percentage: -1
+					}));
+				}		 
+				
+				rest();
 			 });
 		},
 

@@ -1,141 +1,64 @@
 /*
-* === GENERAL ====
+* === GENERAL ===
 */
 
-.red {
-	color: #FF5049 !important; 
-}
-
-.red-focus:focus { 
-	border: 1px solid #FF5049 !important; 
-}
-
-.background-start {
-    background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url(../../../../img/background-start.jpg) no-repeat 20% 40%;
-	height: 40rem;
+.background-managment {
+    background: linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)), url(../../../../img/background-managment.jpeg) no-repeat 50% 60%;
+    height: 40rem;
     background-size: cover;
     position: relative;
-}   
-
-/*
-* === ITEMS ===
-*/
-
-	/*
-	* --- Income, Expenses ---
-	*/
-
-.items_container {
-	width: 100rem;
-    margin: 6rem auto;
-    display: flex;
 }
 
-.income, .expenses {
-	flex: 1;
-}
+.table-data {
+    width: 80%;
+    margin: 5rem auto 0 auto;
+    border-collapse: collapse;
+    
+    tbody tr {
 
-.income {
-    margin-right: 2rem;
-
-    .item-value,
-    .item-delete_btn {
-    	color: #28B9B5;
-    }
-}
-
-.expenses {
-    margin-left: 2rem;
-
-    .item-value,
-    .item-percentage,
-    .item-delete_btn {
-    	color: #FF5049;
-    }
-}
-
-.income-title,
-.expenses-title {
-	text-transform: uppercase;
-    font-size: 1.8rem;
-    font-weight: 400;
-    margin-bottom: 1.5rem;
-}
-
-.income-title {
-	color: #28B9B5;
-}
-
-.expenses-title {
-	color: #FF5049;
-}
-
-	/*
-	* --- Items ---
-	*/
-
-.item {
-    padding: 1.3rem;
-    border-bottom: .1rem solid #E7E7E7;
-    text-align: right;
-
-    &:first-child {
-    	border-top: .1rem solid #E7E7E7;
+        &:hover {
+            background-color: #F5F5F5;
+            cursor: pointer;
+        }
     }
 
-    &:nth-child(even) {
-    	background-color: #F7F7F7;
+    .plus {
+        
+        td:nth-child(6) {
+            color: green;
+        }
     }
 
-    &:hover .item-delete_btn {
-    	display: inline-block;
+    .minus {
+
+        td:nth-child(6) {
+            color: red;
+        }
     }
 
-    &:hover .item-value {
-    	transform: translateX(-2rem);
+    td, th {
+        padding: 1rem;
     }
 
-    &:hover .item-percentage {
-    	transform: translateX(-2rem);
-    }
-}
-
-.item-description { 
-    float: left;
-}
-
-.item-value {
-	display: inline-block;
-    transition: transform .3s;
-}
-
-.item-percentage {
-	float: right;
-    margin-left: 2rem;
-    transition: transform .3s;
-    font-size: 1.1rem;
-    background-color: #FFDAD9;
-    padding: .3rem;
-    border-radius: .3rem;
-    width: 3.2rem;
-    text-align: center;
-}
-
-.item-delete_btn {
-    font-size: 2.2rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    vertical-align: top;
-    display: none;
-    float: right;
-    transform: translateY(-.4rem);
-
-    &:focus {
-        outline: none;
+    th {
+        text-align: left;
+        border-bottom: .2rem solid #000000;
+        background-color: #C9DFF0;
     }
 
-    &:active {
-        transform: translateY(-.2rem);
-    }
+    td {
+        border-top: .1rem solid #000000;
+
+        &:first-child {
+            font-weight: bold;
+        }
+
+        &:nth-child(5) {
+            color: red;
+        }
+
+        &:nth-child(4) {
+            color: green;
+        }
+    }  
 }

@@ -1,21 +1,56 @@
-function route() {
+const router = (() => {
 
-    switch(location.hash) {
+    const handlers = (function() {
+        
+        return {
+            main: 'main'
+        }
+    })();
 
-        case "#start":  $('main').html(Component.start);
-        break;
-
-        case "#managment": $('main').html(Component.managment); 
-            controller.init();
-        break;
-            
+    function listeners() {
+        window.addEventListener("hashchange", () => locations(), false);
     }
-}
 
-window.addEventListener("hashchange", () => route(), false);
-route();
+    function loadLocation(component, callback) {
 
+        $(handlers.main).html(component);
+        callback();
+    }
 
+    function locations() {
+        switch(location.hash) {
+
+            case "#start":  
+                loadLocation(Component.start, summary.init);
+            break;
+            
+            case "#managment": 
+                loadLocation(Component.managment, dateSelector.init);
+            break;
+            
+            case "#workspace": 
+                loadLocation(Component.workspace, () => {});
+            break;
+            
+        }
+    }
+
+    function checkLocations() {
+
+        if(location.hash === '#workspace') {
+
+            location.hash = '#managment';
+        }
+    }
+
+    (function init() {
+
+        locations();
+        listeners();
+        checkLocations();
+    })();
+
+})();
 
 
 

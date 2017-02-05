@@ -16,6 +16,9 @@ class MainManager {
             case 'selectBudget':
             case 'saveBudget':
             case 'deleteItem':
+            case 'dateSelector': 
+            case 'saveDate':
+            case 'getAllUserBudget':
             case 'selectUsername': require_once($request.'.ajax.php'); break;
         }
     }

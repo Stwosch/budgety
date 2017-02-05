@@ -41,17 +41,20 @@ const controller = ((budgetCtrl, UICtrl) => {
 
 		if (input.description === "" || isNaN(input.value) || input.value < 0) return;
 
-		budgetCtrl.saveBudget({type: input.type, description: input.description, value: input.value}, data => {
+		// 2. Get value from dates
+		let obj = budgetCtrl.getDates();
 
-			// 2. Create new instance of item and adds to data budget controller
+		budgetCtrl.saveBudget({type: input.type, description: input.description, value: input.value, month: obj.month, year: obj.year}, data => {
+
+			// 3. Create new instance of item and adds to data budget controller
 			const newItem = budgetCtrl.addItem(input.type, input.description, input.value, data.id);
-			// 3. Add item to the UI
+			// 4. Add item to the UI
 			UICtrl.addListItem(newItem, input.type);
-			// 4. Clear fields
+			// 5. Clear fields
 			UICtrl.clearFields();
-			// 5. Update budget
+			// 6. Update budget
 			updateBudget();
-			// 6. Calculate and update percentages
+			// 7. Calculate and update percentages
 			updatePercentages();
 		});
 	}
@@ -80,15 +83,20 @@ const controller = ((budgetCtrl, UICtrl) => {
 		}
 	}
 
-	function setBudget() {
-		
-			budgetCtrl.selectBudget(obj => {
+	function setBudget(date) {
+
+			let obj = budgetCtrl.splitDates(date);
+			budgetCtrl.setDates(obj.month, obj.year);
+
+			budgetCtrl.selectBudget(obj.month, obj.year, obj => {
 
 				const newItem = budgetCtrl.addItem(obj.type, obj.description, parseFloat(obj.value), parseInt(obj.id_item));
 				UICtrl.addListItem(newItem, obj.type);
 				updateBudget();
 				updatePercentages();
-			});
+			}, 
+			UICtrl.displayBudget,
+			setupEventListeners);
 	}
 
 	function setUsername() {
@@ -108,16 +116,9 @@ const controller = ((budgetCtrl, UICtrl) => {
 	}
 	
 	return {
-		init: () => {
+		init: date => {
 			resetAllItems();
-			UICtrl.displayBudget({
-				budget: 0,
-				totalInc: 0,
-				totalExp: 0,
-				percentage: -1
-			});
-			setBudget();			
-			setupEventListeners();
+			setBudget(date);
 			setUsername();
 			UICtrl.displayDate();
 		}

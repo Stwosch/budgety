@@ -1,6 +1,6 @@
 const Component = {
     
-managment : `
+workspace : `
 <section class="background-managment">
     <div class="budget">
         <h1 class="budget-title">
@@ -44,7 +44,6 @@ managment : `
 `,
 
 start : `
-    
     <section class="background-start">
         <div class="budget">
             <h1 class="budget-title">Available Budget in all months</h1>
@@ -63,20 +62,20 @@ start : `
     </section>
     <section>
         <div class="add">
-            <input type="text" class="add-name" placeholder="Add name (optional)">
+            <input type="text" class="add-name" placeholder="Add name">
             <select class="add-month">
-                <option value="jan" selected>January</option>
-                <option value="feb">February</option>
-                <option value="mar">March</option>
-                <option value="apr">April</option>
-                <option value="may">May</option>
-                <option value="jun">June</option>
-                <option value="jul">July</option>
-                <option value="aug">August</option>
-                <option value="sep">September</option>
-                <option value="oct">October</option>
-                <option value="nov">November</option>
-                <option value="dec">December</option>
+                <option value="1" selected>January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
             </select>
             <input type="number" class="add-year" placeholder="Year">
             <button class="add-btn" id="add-btn-start"><i class="icon-ok-circled2"></i></button>
@@ -93,49 +92,19 @@ start : `
                 <th>Sum</th>
             </thead>
             <tbody>
-                <tr class="plus">
-                    <td>1</td>
-                    <td>21/01/2016</td>
-                    <td>Budget 1</td>
-                    <td>+ 1.500</td>
-                    <td>- 100</td>
-                    <td>+ 1.400</td>
-                </tr>
-                <tr class="plus">
-                    <td>2</td>
-                    <td>11/08/2016</td>
-                    <td>My budget</td>
-                    <td>+ 1.700</td>
-                    <td>- 600</td>
-                    <td>+ 1.100</td>
-                </tr>
-                <tr class="minus">
-                    <td>3</td>
-                    <td>01/01/2016</td>
-                    <td>Budzeterinio</td>
-                    <td>+ 30</td>
-                    <td>- 11.000</td>
-                    <td>- 10.970</td>
-                </tr>
-                <tr class="plus">
-                    <td>4</td>
-                    <td>23/02/2016</td>
-                    <td>Budget 2</td>
-                    <td>+ 11.000</td>
-                    <td>- 450</td>
-                    <td>+ 10.550</td>
-                </tr>
-                <tr class="minus">
-                    <td>5</td>
-                    <td>19/01/2016</td>
-                    <td>Budgetto</td>
-                    <td>+ 1.000</td>
-                    <td>- 10.000</td>
-                    <td>- 9.000</td>
-                </tr>
             </tbody>
         </table>
     </section>
+`,
+
+managment: `
+    <div class="date_selector">
+        <h2>Choose date</h2>
+        <form>
+            <select class="dates"></select>
+            <button type="submit" class="dates-btn">Choose</button>
+        </form>
+    </div>
 `
 
 };
