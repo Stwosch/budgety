@@ -13,13 +13,12 @@ class MainManager {
 
             case 'checkLogIn':
             case 'checkSignUp':
-            case 'selectBudget':
+            case 'loadBudget':
             case 'saveBudget':
             case 'deleteItem':
             case 'dateSelector': 
             case 'saveDate':
-            case 'summaryGetBudget':
-            case 'selectUsername': require_once($request.'.ajax.php'); break;
+            case 'summaryGetBudget': require_once($request.'.ajax.php'); break;
         }
     }
 }

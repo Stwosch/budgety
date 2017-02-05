@@ -2,10 +2,10 @@ const modelWorkspace = (() => {
 
 	class Expense {
 
-		constructor(id, description, value) {
-			this.id = id;
-			this.description = description;
-			this.value = value;
+		constructor(options) {
+			this.id = options.id;
+			this.description = options.description;
+			this.value = options.value;
 			this.percentage = -1;
 		}
 
@@ -17,10 +17,10 @@ const modelWorkspace = (() => {
 
 	class Income {
 
-		constructor(id, description, value) {
-			this.id = id;
-			this.description = description;
-			this.value = value;
+		constructor(options) {
+			this.id = options.id;
+			this.description = options.description;
+			this.value = options.value;
 		}
 	}
 
@@ -42,7 +42,7 @@ const modelWorkspace = (() => {
 
 	};
 
-	const dates = {
+	const YMdate = {
 		month: 0,
 		year: 0
 	}
@@ -57,34 +57,44 @@ const modelWorkspace = (() => {
 
 	return {
 
-		setDates: (month, year) => {
+		setYMdate: string => {
 
-			dates.month = month;
-			dates.year = year;
-		},
+			let arr = string.split('/');
 
-		getDates: () => {
+			YMdate.month = arr[0];
+			YMdate.year = arr[1];
 
 			return {
-				month: dates.month,
-				year: dates.year
+				month: arr[0],
+				year: arr[1]
 			}
 		},
 
-		addItem: (type, desc, val, id) => {
+		getYMdate: () => {
+			return YMdate;
+		},
+
+		addItem: obj => {
 
 			let newItem;
+			let newObj = {
+				id: obj.id_item,
+				description: obj.description,
+				value: obj.value
+			}
 
 			// 1. Create new instance of item
-			if(type === 'exp') {
-				newItem = new Expense(id, desc, val);
+			if(obj.type === 'exp') {
+
+				newItem = new Expense(newObj);
 			}
-			else if(type === 'inc') {
-				newItem = new Income(id, desc, val);
+			else if(obj.type === 'inc') {
+
+				newItem = new Income(newObj);
 			}
 
 			// 2. Push item to data items array
-			data.allItems[type].push(newItem);
+			data.allItems[obj.type].push(newItem);
 			
 			//3. Return new instance of item
 			return newItem;
@@ -136,41 +146,35 @@ const modelWorkspace = (() => {
 			};
 		},
 
-		getAllItems: () => data.allItems,
-
-		splitDates: date => {
-
-			let arr = date.split('/');
-			return {
-				month: arr[0],
-				year: arr[1]
-			}
+		clearAllItems: () => {
+			data.allItems.exp = [];
+			data.allItems.inc = [];
 		},
 
-		selectBudget: (month, year, callback, elseCb, rest) => {
+		loadBudget: (obj, callback, elseCallback, restCallbacks) => {
 
-			sendToAjax('selectBudget', {month: month, year: year}, data => {
+			sendToAjax('loadBudget', obj, data => {
 				 
 				 // IF statement is protection against data that doesn't contain any value,
 				//  it's possible because users can don't have any values in database yet.
 				if(data) {
-					for(obj of data) {
+
+					for(let obj of data) {
 						callback(obj);
 					}
+
 				} else {
-					elseCb(({
+					elseCallback({
 						budget: 0,
 						totalInc: 0,
 						totalExp: 0,
 						percentage: -1
-					}));
+					});
 				}		 
 				
-				rest();
+				restCallbacks();
 			 });
 		},
-
-		getUsername: callback => sendToAjax('selectUsername', {}, data => callback(data.username)),
 
 		saveBudget: (obj, callback) => sendToAjax('saveBudget', obj, data => callback(data))
 	};

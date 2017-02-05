@@ -49,7 +49,6 @@ const viewWorkspace = (() => {
 		addListItem: (obj, type) => {
 
 			let html, element;
-
 			// 1. Create HTML placeholder
 
 			if (type === 'inc') {

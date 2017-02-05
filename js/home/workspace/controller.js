@@ -19,7 +19,7 @@ const controllerWorkspace = ((mdl, vw) => {
 		// 1. Calculate budget
 		mdl.calculateBudget();
 		// 2. Return the budget
-		const budget = mdl.getBudget();
+		let budget = mdl.getBudget();
 		//5. Display budget on the UI
 		vw.displayBudget(budget);
 	}
@@ -29,7 +29,7 @@ const controllerWorkspace = ((mdl, vw) => {
 		// 1. Calculate percentages
 		mdl.calculatePercentage();
 		// 2. Return percentages from the budget controller
-		const percentages = mdl.getPercentages();
+		let percentages = mdl.getPercentages();
 		// 3. Display updated budget
 		vw.displayPercentages(percentages);
 	}
@@ -37,17 +37,18 @@ const controllerWorkspace = ((mdl, vw) => {
 	function ctrlAddItem() {
 
 		// 1. Get input values from user
-		const input = vw.getInput();
+		let input = vw.getInput();
 
 		if (input.description === "" || isNaN(input.value) || input.value < 0) return;
 
 		// 2. Get value from dates
-		let obj = mdl.getDates();
+		let obj = mdl.getYMdate();
 
 		mdl.saveBudget({type: input.type, description: input.description, value: input.value, month: obj.month, year: obj.year}, data => {
 
 			// 3. Create new instance of item and adds to data budget controller
-			const newItem = mdl.addItem(input.type, input.description, input.value, data.id);
+			
+			let newItem = mdl.addItem({type: input.type, description: input.description, value: input.value, id_item: data.id_item});
 			// 4. Add item to the UI
 			vw.addListItem(newItem, input.type);
 			// 5. Clear fields
@@ -83,15 +84,17 @@ const controllerWorkspace = ((mdl, vw) => {
 		}
 	}
 
-	function setBudget(date) {
+	function ctrlSetBudget(date) {
 
-			let obj = mdl.splitDates(date);
-			mdl.setDates(obj.month, obj.year);
+			let obj = mdl.setYMdate(date);
 
-			mdl.selectBudget(obj.month, obj.year, obj => {
+			mdl.loadBudget(obj, data => {
 
-				const newItem = mdl.addItem(obj.type, obj.description, parseFloat(obj.value), parseInt(obj.id_item));
-				vw.addListItem(newItem, obj.type);
+				data.value = parseFloat(data.value);
+				data.id_item = parseInt(data.id_item);
+
+				let newItem = mdl.addItem(data);
+				vw.addListItem(newItem, data.type);
 				updateBudget();
 				updatePercentages();
 			}, 
@@ -99,28 +102,10 @@ const controllerWorkspace = ((mdl, vw) => {
 			setupEventListeners);
 	}
 
-	function setUsername() {
-
-		mdl.getUsername(data => {
-
-			vw.setUsername(data);
-		});
-	}
-
-	function resetAllItems() {
-
-		// Clear tables with all objects
-		const data = mdl.getAllItems();
-		data.exp = [];
-		data.inc = [];
-	}
-	
 	return {
 		init: date => {
-			resetAllItems();
-			setBudget(date);
-			setUsername();
-			vw.displayDate();
+			mdl.clearAllItems();
+			ctrlSetBudget(date);
 		}
 	};
 	

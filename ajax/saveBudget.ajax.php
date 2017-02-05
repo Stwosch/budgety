@@ -1,10 +1,10 @@
 <?php 
-	/*
+	
 	if(!isset($_POST['type']) || !isset($_POST['description']) || !isset($_POST['value']) || !isset($_POST['month']) || !isset($_POST['year'])) {
 		header("Location: welcome");
 		exit;
 	}
-	*/
+	
 	// 1. Get last id to proper assign id
 	$lastRecord = DatabaseManager::selectValSQL('SELECT id_item FROM budget WHERE id_users = :s0 ORDER BY id_item DESC LIMIT 1', [$_SESSION['iduser']]);
 	
@@ -19,5 +19,5 @@
 	
 	$result = DatabaseManager::changeValSQL('INSERT INTO budget(type, description, value, id_item, id_users, id_date) VALUES (:s0, :s1, :s2, :s3, :s4, :s5)', [$_POST['type'], $_POST['description'], $_POST['value'], $idItem, $_SESSION['iduser'], $idDate]);
 
-	$return = ["id" => $idItem];
+	$return = ["id_item" => $idItem];
     echo json_encode($return);
