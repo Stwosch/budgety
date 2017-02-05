@@ -52,13 +52,15 @@ echo '
         </div>
         <script src="js/jquery-3.1.1.min.js"></script>
         <script src="js/ajax.js"></script>
-        <script src="js/app/dateSelector.js"></script>
-        <script src="js/app/summary.js"></script>
-        <script src="js/app/budget.js"></script>
-        <script src="js/app/userInterface.js"></script>
-        <script src="js/app/main.js"></script>
-        <script src="js/app/components.js"></script>
-        <script src="js/app/router.js"></script>
+        <script src="js/home/managment/dateSelector.js"></script>
+        <script src="js/home/summary/model.js"></script>
+        <script src="js/home/summary/view.js"></script>
+        <script src="js/home/summary/controller.js"></script>
+        <script src="js/home/workspace/model.js"></script>
+        <script src="js/home/workspace/view.js"></script>
+        <script src="js/home/workspace/controller.js"></script>
+        <script src="js/home/components.js"></script>
+        <script src="js/home/router.js"></script>
     </body>
 </html>
 ';

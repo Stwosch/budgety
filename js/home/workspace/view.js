@@ -1,4 +1,4 @@
-const UIController = (() => {
+const viewWorkspace = (() => {
 
 	const DOMstrings = {
 		inputType: '.add-type',

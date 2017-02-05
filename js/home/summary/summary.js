@@ -16,7 +16,7 @@ const summary = (() => {
         $(handlers.startBtn).on('click', ctrlDate);
     }
 
-    function selectValues() {
+  /**/  function selectValues() {
 
         return {
             name: $(handlers.nameInput).val().trim(),
@@ -25,7 +25,7 @@ const summary = (() => {
         }
     }
 
-    function checkValues(name, month, year) {
+   /**/ function checkValues(name, month, year) {
         
         if (name === "" ||
             isNaN(month) ||
@@ -39,13 +39,13 @@ const summary = (() => {
         return true;
     }
 
-    function clearInputs() {
+    /**/function clearInputs() {
 
         $(handlers.nameInput).val("");
         $(handlers.yearInput).val("");
     }
 
-    function ctrlDate() {
+   /**/ function ctrlDate() {
         
         let inputs = selectValues();
         

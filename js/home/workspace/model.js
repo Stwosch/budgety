@@ -1,4 +1,4 @@
-const budgetController = (() => {
+const modelWorkspace = (() => {
 
 	class Expense {
 

@@ -1,8 +1,8 @@
-const controller = ((budgetCtrl, UICtrl) => {
+const controllerWorkspace = ((mdl, vw) => {
 
 	function setupEventListeners() {
 		
-		const DOMstrings = UICtrl.getDOMstrings();
+		const DOMstrings = vw.getDOMstrings();
 		
 		// Add item on click button
 		$(DOMstrings.inputBtn).on('click', ctrlAddItem);
@@ -11,47 +11,47 @@ const controller = ((budgetCtrl, UICtrl) => {
 		// Delete item on click button
 		$(DOMstrings.container).on('click', ctrlDeleteItem);
 		// Change type while changing select field
-		$(DOMstrings.inputType).change(UICtrl.changeTypeStyle);
+		$(DOMstrings.inputType).change(vw.changeTypeStyle);
 	}
 
 	function updateBudget() {
 
 		// 1. Calculate budget
-		budgetCtrl.calculateBudget();
+		mdl.calculateBudget();
 		// 2. Return the budget
-		const budget = budgetCtrl.getBudget();
+		const budget = mdl.getBudget();
 		//5. Display budget on the UI
-		UICtrl.displayBudget(budget);
+		vw.displayBudget(budget);
 	}
 
 	function updatePercentages() {
 
 		// 1. Calculate percentages
-		budgetCtrl.calculatePercentage();
+		mdl.calculatePercentage();
 		// 2. Return percentages from the budget controller
-		const percentages = budgetCtrl.getPercentages();
+		const percentages = mdl.getPercentages();
 		// 3. Display updated budget
-		UICtrl.displayPercentages(percentages);
+		vw.displayPercentages(percentages);
 	}
 
 	function ctrlAddItem() {
 
 		// 1. Get input values from user
-		const input = UICtrl.getInput();
+		const input = vw.getInput();
 
 		if (input.description === "" || isNaN(input.value) || input.value < 0) return;
 
 		// 2. Get value from dates
-		let obj = budgetCtrl.getDates();
+		let obj = mdl.getDates();
 
-		budgetCtrl.saveBudget({type: input.type, description: input.description, value: input.value, month: obj.month, year: obj.year}, data => {
+		mdl.saveBudget({type: input.type, description: input.description, value: input.value, month: obj.month, year: obj.year}, data => {
 
 			// 3. Create new instance of item and adds to data budget controller
-			const newItem = budgetCtrl.addItem(input.type, input.description, input.value, data.id);
+			const newItem = mdl.addItem(input.type, input.description, input.value, data.id);
 			// 4. Add item to the UI
-			UICtrl.addListItem(newItem, input.type);
+			vw.addListItem(newItem, input.type);
 			// 5. Clear fields
-			UICtrl.clearFields();
+			vw.clearFields();
 			// 6. Update budget
 			updateBudget();
 			// 7. Calculate and update percentages
@@ -71,46 +71,46 @@ const controller = ((budgetCtrl, UICtrl) => {
 			ID = parseInt(splitID[1]);
 
 			// 1. Delete the item from the data structure
-			budgetCtrl.deleteItem(type, ID);
+			mdl.deleteItem(type, ID);
 			// 2. Delete the item from the UI
-			UICtrl.deleteListItem(itemID);
+			vw.deleteListItem(itemID);
 			// 3. Update and show the new budget
 			updateBudget();
 			// 6. Calculate and update percentages
 			updatePercentages();
 			// 7. Delete item from database
-			budgetCtrl.deleteItemDB(ID);
+			mdl.deleteItemDB(ID);
 		}
 	}
 
 	function setBudget(date) {
 
-			let obj = budgetCtrl.splitDates(date);
-			budgetCtrl.setDates(obj.month, obj.year);
+			let obj = mdl.splitDates(date);
+			mdl.setDates(obj.month, obj.year);
 
-			budgetCtrl.selectBudget(obj.month, obj.year, obj => {
+			mdl.selectBudget(obj.month, obj.year, obj => {
 
-				const newItem = budgetCtrl.addItem(obj.type, obj.description, parseFloat(obj.value), parseInt(obj.id_item));
-				UICtrl.addListItem(newItem, obj.type);
+				const newItem = mdl.addItem(obj.type, obj.description, parseFloat(obj.value), parseInt(obj.id_item));
+				vw.addListItem(newItem, obj.type);
 				updateBudget();
 				updatePercentages();
 			}, 
-			UICtrl.displayBudget,
+			vw.displayBudget,
 			setupEventListeners);
 	}
 
 	function setUsername() {
 
-		budgetCtrl.getUsername(data => {
+		mdl.getUsername(data => {
 
-			UICtrl.setUsername(data);
+			vw.setUsername(data);
 		});
 	}
 
 	function resetAllItems() {
 
 		// Clear tables with all objects
-		const data = budgetCtrl.getAllItems();
+		const data = mdl.getAllItems();
 		data.exp = [];
 		data.inc = [];
 	}
@@ -120,11 +120,11 @@ const controller = ((budgetCtrl, UICtrl) => {
 			resetAllItems();
 			setBudget(date);
 			setUsername();
-			UICtrl.displayDate();
+			vw.displayDate();
 		}
 	};
 	
 
-})(budgetController, UIController);
+})(modelWorkspace, viewWorkspace);
 
 

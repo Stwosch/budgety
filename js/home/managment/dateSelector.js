@@ -16,7 +16,7 @@ const dateSelector = (() => {
 
         e.preventDefault();
         location.hash = '#workspace';
-        controller.init($(handlers.container).val());
+        controllerWorkspace.init($(handlers.container).val());
     }
 
     function bindDate(arr) {

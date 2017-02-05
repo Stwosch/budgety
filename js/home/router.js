@@ -21,7 +21,7 @@ const router = (() => {
         switch(location.hash) {
 
             case "#start":  
-                loadLocation(Component.start, summary.init);
+                loadLocation(Component.start, controllerSummary.init);
             break;
             
             case "#managment": 
