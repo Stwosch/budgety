@@ -11,6 +11,11 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+main {
+	overflow-y: scroll;
+	max-height: 91vh;
+}
+
 /*
 *	=== GRID ===
 */
@@ -260,5 +265,96 @@ body {
 
     &:focus {
     	outline: none;
+    }
+}
+
+/*
+*   === MESSAGES ===
+*/
+
+.messages-container {
+    position: absolute;
+    top: 3%;
+    right: 2%;
+    z-index: 999;
+}
+
+.error_message {
+    background-color: #FFBABA;
+    color: #D8000C;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: .3rem;
+}
+
+.cancel_message {
+    cursor: pointer;
+}
+
+/*
+*	=== DEFAULT COMPONENTS ===
+*/
+
+	/*
+	*	--- Buttons ---
+	*/
+
+.button {
+    font-weight: bold;
+    color: #FFF;
+    border: 0;
+    outline: 0;
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+    transform: translateY(-.25rem);
+    cursor: pointer; 
+}
+
+.button-modifier_green {
+	background-color: #2ECC71;
+	box-shadow: 0 .5rem 0 0 #15B358;
+
+	 &:hover,
+	 &:focus {
+        background-color: #48E68B;
+    }
+}
+
+.button-modifier_red {
+	background-color: #E74C3C;
+  	box-shadow: 0 .5rem 0 0 #CE3323;
+
+	 &:hover,
+	 &:focus {
+        background-color: #FF6656;
+    }
+}
+
+.button-modifier_blue {
+	background-color: #55ACEE;
+  	box-shadow: 0 .5rem 0 0 #3C93D5;
+
+	&:hover,
+	&:focus {
+        background-color: #6FC6FF;
+    }
+}
+
+/*
+*	--- Select ---
+*/
+
+.select {
+    padding: 1rem;
+    font-weight: bold;
+	width: 20rem;
+    background: linear-gradient(0deg,#EFEFEF, #FFFFFF);
+    border-radius: 1rem;
+    border: .1rem #BABABA solid;
+    outline: 0;
+    cursor: pointer;
+
+    &:focus {
+        box-shadow: 0 0 .3rem .1rem #188DF9;
     }
 }

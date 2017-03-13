@@ -129,33 +129,4 @@
     text-shadow: .1rem .2rem #BABABA;
     font-size: 4rem; }
 
-.dates {
-  padding: 1rem;
-  font-weight: bold;
-  width: 60%;
-  background: -webkit-linear-gradient(90deg, #EFEFEF, #FFFFFF);
-  background: linear-gradient(0deg, #EFEFEF, #FFFFFF);
-  border-radius: 1rem;
-  border: .1rem #BABABA solid;
-  outline: 0;
-  cursor: pointer; }
-  .dates:focus {
-    box-shadow: 0 0 .3rem .1rem #188DF9; }
-
-.dates-btn {
-  font-weight: bold;
-  color: #FFFFFF;
-  border: 0;
-  outline: 0;
-  padding: 1rem 2rem;
-  border-radius: .5rem;
-  background-color: #2ECC71;
-  -webkit-transform: translateY(-0.25rem);
-      -ms-transform: translateY(-0.25rem);
-          transform: translateY(-0.25rem);
-  box-shadow: 0 .5rem 0 0 #15B358;
-  cursor: pointer; }
-  .dates-btn:hover {
-    background-color: #48E68B; }
-
 /*# sourceMappingURL=managment.css.map */

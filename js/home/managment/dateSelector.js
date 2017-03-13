@@ -15,8 +15,10 @@ const dateSelector = (() => {
     function chooseBudget(e) {
 
         e.preventDefault();
+        let val = $(handlers.container).val();
+        if(!val) { return };
         location.hash = '#workspace';
-        controllerWorkspace.init($(handlers.container).val());
+        controllerWorkspace.init(val);
     }
 
     function bindDate(arr) {
@@ -49,10 +51,7 @@ const dateSelector = (() => {
 
     function setDate(data) {
         
-        if(!data) {
-            console.log('brak');
-            return;
-        } 
+        if(!data) { return; } 
 
         bindDate(data);
     }

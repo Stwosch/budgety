@@ -1,9 +1,6 @@
 <?php
 
-    if(!isset($_POST['name']) || !isset($_POST['month']) || !isset($_POST['year'])) {
-        header('Location: welcome');
-        exit();
-    }
+    if(!isset($_POST['name']) || !isset($_POST['month']) || !isset($_POST['year'])) { MainManager::router(); }
 
     $test = DatabaseManager::selectValSQL('SELECT * FROM date WHERE month = :s0 && year = :s1 && id_users = :s2', [$_POST['month'], $_POST['year'], $_SESSION['iduser']]);
 

@@ -1,5 +1,5 @@
 /*
-* === GENERAL ===
+* --- Background ---
 */
 .background-managment {
   background: -webkit-linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(../../../../img/background-managment.jpeg) no-repeat 50% 60%;
@@ -8,9 +8,12 @@
   background-size: cover;
   position: relative; }
 
+/*
+*   === TABLE ===
+*/
 .table-data {
   width: 80%;
-  margin: 5rem auto 0 auto;
+  margin: 0 auto;
   border-collapse: collapse; }
   .table-data tbody tr:hover {
     background-color: #F5F5F5;
@@ -33,5 +36,24 @@
       color: red; }
     .table-data td:nth-child(4) {
       color: green; }
+
+/*
+*   TABLE OPTIONS e.g. inputs, buttons
+*/
+.table-options {
+  width: 60%;
+  margin: 5rem auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
+.toDelete {
+  background-color: #FFBABA !important;
+  border: .2rem solid #D8000C !important; }
 
 /*# sourceMappingURL=start.css.map */

@@ -93,7 +93,6 @@ echo '
                     Back<i class="icon-level-up"></i>
                 </button>
             </section>
-            <a class="links" href="#">Forgotten your password?</a>
             <a class="links" href="http://www.freepik.com/free-vector/blue-logo-of-letter-b_842921.htm">Designed by Freepik</a> 
         </main>
         <script src="js/jquery-3.1.1.min.js"></script>

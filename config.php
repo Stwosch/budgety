@@ -14,7 +14,7 @@ $URL = $slash != '/' ? $URL.'/' : $URL;
 define('DB_SERVER', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASSWORD', 'toor1234');
+define('DB_PASSWORD', '');
 define('DB_NAME', 'kanciantus');
 
 //ENVIROMENT

@@ -18,7 +18,16 @@ class MainManager {
             case 'deleteItem':
             case 'dateSelector': 
             case 'saveDate':
+            case 'loadUsername':
+            case 'deleteDate':
             case 'summaryGetBudget': require_once($request.'.ajax.php'); break;
         }
+    }
+
+    static public function router() {
+
+        header("Location: welcome");
+        exit();
+
     }
 }

@@ -1,9 +1,6 @@
 <?php 
 	
-	if(!isset($_POST['type']) || !isset($_POST['description']) || !isset($_POST['value']) || !isset($_POST['month']) || !isset($_POST['year'])) {
-		header("Location: welcome");
-		exit;
-	}
+	if(!isset($_POST['type']) || !isset($_POST['description']) || !isset($_POST['value']) || !isset($_POST['month']) || !isset($_POST['year'])) { MainManager::router(); }
 	
 	// 1. Get last id to proper assign id
 	$lastRecord = DatabaseManager::selectValSQL('SELECT id_item FROM budget WHERE id_users = :s0 ORDER BY id_item DESC LIMIT 1', [$_SESSION['iduser']]);

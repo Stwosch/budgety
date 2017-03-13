@@ -6,9 +6,8 @@ class UserManager {
 	static public function LogIn($username, $password) {
 
 		$username = filter_var($username, FILTER_SANITIZE_STRING);
-		$password = filter_var($password, FILTER_SANITIZE_STRING);
 
-		$checkedUser = self::checkLogIn($username, $password);
+		$checkedUser = self::checkLogIn($username, md5($password));
 		
 		if(!$checkedUser) return false;
 
@@ -27,7 +26,7 @@ class UserManager {
 
 		if($checkedUser) return false;
 
-		self::addUser($username, $password, $email);
+		self::addUser($username, md5($password), $email);
 		$arr = self::getUserId($username, $email);
 		self::getSession($arr['id_users']);
 		return true;

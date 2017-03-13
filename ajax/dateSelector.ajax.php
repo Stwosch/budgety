@@ -1,9 +1,6 @@
 <?php
 
-    if (!isset($_POST['data'])) {
-        header("Location: welcome");
-        exit();
-    }
+    if (!isset($_POST['data'])) { MainManager::router(); }
 
    $result =  DatabaseManager::selectValSQL('SELECT name, month, year FROM date WHERE id_users = :s0', [$_SESSION['iduser']]);
 

@@ -23,7 +23,7 @@ const viewWorkspace = (() => {
 		num = num.toFixed(2);
 
 		const numSplit = num.split('.');
-		const dec = numSplit[1];
+		let dec = numSplit[1];
 		let int = numSplit[0];
 
 		if(int.length > 3) {
@@ -125,16 +125,11 @@ const viewWorkspace = (() => {
 				$(DOMstrings.percentageLabel).text('---');
 		},
 
-		displayDate: () => {
-
-			const date = new Date();
+		displayDate: obj => {
 
 			const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-			const month = date.getMonth();
-			const year = date.getFullYear();
-
-			$(DOMstrings.dateLabel).text(months[month] + ' ' + year);
+			$(DOMstrings.dateLabel).html(months[obj.month - 1] + ' ' + obj.year + ' year');
 
 		},
 
@@ -146,8 +141,6 @@ const viewWorkspace = (() => {
 		},
 
 		getDOMstrings: () => DOMstrings,
-
-		setUsername: name => $(DOMstrings.username).html(name)
 
 	};
 

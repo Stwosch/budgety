@@ -1,19 +1,12 @@
 const router = (() => {
 
-    const handlers = (function() {
-        
-        return {
-            main: 'main'
-        }
-    })();
-
     function listeners() {
         window.addEventListener("hashchange", () => locations(), false);
     }
 
     function loadLocation(component, callback) {
 
-        $(handlers.main).html(component);
+        $('main').html(component);
         callback();
     }
 
@@ -48,6 +41,7 @@ const router = (() => {
         locations();
         listeners();
         checkLocations();
+        controllerSummary.setUsername();
     })();
 
 })();

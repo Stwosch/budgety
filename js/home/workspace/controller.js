@@ -99,7 +99,10 @@ const controllerWorkspace = ((mdl, vw) => {
 				updatePercentages();
 			}, 
 			vw.displayBudget,
-			setupEventListeners);
+			() => {
+				setupEventListeners();
+				vw.displayDate(obj);
+			});
 	}
 
 	return {

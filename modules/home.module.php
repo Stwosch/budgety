@@ -16,6 +16,7 @@ echo '
         <title>Budgety</title>
     </head>
     <body>
+        <div class="messages-container"></div>
         <header class="masthead">
             <img src="img/budgety_logo.svg" alt="Logo" width="50" height="50">
             <div class="user_data">
@@ -29,7 +30,7 @@ echo '
                     <ul>
                         <li>
                             <a href="#start">
-                                <i class="icon-th-large"></i> Start
+                                <i class="icon-th-large"></i> Summary
                             </a>
                         </li>
                         <li>

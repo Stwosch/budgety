@@ -1,5 +1,5 @@
 /*
-* === GENERAL ===
+* --- Background ---
 */
 
 .background-managment {
@@ -9,9 +9,13 @@
     position: relative;
 }
 
+/*
+*   === TABLE ===
+*/
+
 .table-data {
     width: 80%;
-    margin: 5rem auto 0 auto;
+    margin: 0 auto;
     border-collapse: collapse;
     
     tbody tr {
@@ -61,4 +65,20 @@
             color: green;
         }
     }  
+}
+
+/*
+*   TABLE OPTIONS e.g. inputs, buttons
+*/
+
+.table-options {
+    width: 60%;
+    margin: 5rem auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.toDelete {
+    background-color: #FFBABA !important;
+    border: .2rem solid #D8000C !important;
 }

@@ -35,6 +35,12 @@
       "css": "th-large",
       "code": 59396,
       "src": "fontawesome"
+    },
+    {
+      "uid": "189edfc41118cccbeb25788fcbb403da",
+      "css": "attention",
+      "code": 59397,
+      "src": "mfglabs"
     }
   ]
 }
